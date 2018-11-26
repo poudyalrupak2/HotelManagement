@@ -1,0 +1,69 @@
+﻿@model List<HotelManagemant.ViewModels.customerInfo>
+@{
+    ViewBag.Title = "book";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>book</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (Model != null && Model.Count > 0)
+    {
+        int j = 0;
+
+        foreach (var i in Model)
+        {
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.TextBoxFor(a => a[j].Id,new {@placeholder="Id",id="txtId" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.TextBoxFor(a => a[j].CustomerName, new { @placeholder = "CustomerName" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.TextBoxFor(a => a[j].Address, new { @placeholder = "Address" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.TextBoxFor(a => a[j].NationalIdNo, new { @placeholder = "NationalIdNo" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            @Html.TextBoxFor(a => a[j].Nationality, new { @placeholder = "Nationality" })
+        </div>
+    </div>
+    <a href="#" class="btn-link" id="btnAdd">Add</a>
+    <a href="#" class="btn-link" id="btnRemove">Remove</a>
+</div>
+        }
+    }
+    <input type="submit" value="submit" class="btn btn-success" />
+}
+@section Scripts{   
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnAdd").click(function () {
+            var $div = $(this).parent();
+            var clone = $div.clone();
+            var index = clone.find("input#txtId").attr('name').match('/\d+/');
+            clone.find("input").each(function () {
+                var index = $(this).attr('name').match('/\d+/');
+                var oldN = $(this).attr('name');
+                var newN = oldN.replace(index, (parseInt(index) + 1));
+
+              //  $(this).attr('id', newN);
+
+            })
+            $div.append(clone);
+        });
+    })
+    </script>
+    }
