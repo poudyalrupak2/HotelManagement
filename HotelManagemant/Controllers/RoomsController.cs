@@ -1,22 +1,27 @@
 ﻿using System;
+using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IdentityModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using HotelManagemant.Data;
 using HotelManagemant.Models;
 using HotelManagemant.ViewModels;
+using System.Transactions;
+
 
 namespace HotelManagemant.Controllers
 {
     public class RoomsController : Controller
     {
-        private HotelDbContext db = new HotelDbContext();
+        private Context db = new Context();
 
         // GET: Rooms
         public ActionResult Index()
@@ -157,36 +162,98 @@ namespace HotelManagemant.Controllers
             return RedirectToAction("Index");
         }
         public ActionResult book()
-        { 
-            //bookViewModel objbook = new bookViewModel();
-            //objbook.roomId = roomId;
-            //objbook.CheckIn = DateTime.Now;
-            //objbook.CheckoutDate = DateTime.Now;
-            //objbook.roomNo = "abc";
-            List<customerInfo> lstCustomers = new List<customerInfo>();
-            lstCustomers.Add(new customerInfo
-            {
-                Id = 0,
-                CustomerName = "",
-                Address = "",
-                NationalIdNo = "",
-                Nationality = ""
-            });
-           // objbook.customers = lstCustomers;
-            return View(lstCustomers);
+        {
+
+            return View(db.rooms.ToList());
+
         }
 
-      
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult book(List<customerInfo> book)
+        public ActionResult bookRoom(List<int> id)
         {
-            if (ModelState.IsValid)
+            List<bookViewModel> objBook = new List<bookViewModel>();
+            string bookingno = "";
+            if (db.bookings.ToList().Count != 0)
             {
-                    
+                bookingno = db.bookings.OrderByDescending(m => m.BookingId).FirstOrDefault().bookingNo;
             }
-            return View();
+          
+            if (bookingno == ""||bookingno==null)
+            {
+                bookingno = "Dbug2000";
+            }
+            else
+            {
+                var num = Regex.Matches(bookingno, @"\D+|\d+")
+              .Cast<Match>()
+              .Select(m => m.Value).ToList();
+                int num1 = Convert.ToInt32(num[1]) + 1;
+                bookingno = "DBUG" + num1;
+
+            }
+            foreach (int item in id)
+            {
+                Room objRoom = db.rooms.Find(item);
+                bookViewModel objbookVM = new bookViewModel();
+                objbookVM.roomId = item;
+                objbookVM.roomNo = objRoom.RoomNo;
+                objbookVM.bookingno = bookingno;
+                objBook.Add(objbookVM);
+            }
+            return View(objBook);
         }
+        [HttpPost]
+        public ActionResult bookRoom(List<bookViewModel> book)
+        {
+            Booking objBook = new Booking();
+            List<customers> lstCustomer = new List<customers>();
+            foreach (var item in book)
+            {
+                Room room = db.rooms.Find(item.roomId);
+
+                customers objCustomer = db.Customers.FirstOrDefault(m => m.CustomerName == item.CustomerName && m.Address == item.Address && m.NationalIdNo == item.NationalIdNo && m.Nationality == item.Nationality);
+
+                if (objCustomer == null)
+                {
+                    db.Customers.Add(new customers
+                    {
+                        Address = item.Address,
+                        CustomerName = item.CustomerName,
+                        NationalIdNo = item.NationalIdNo,
+                        Nationality = item.Nationality
+
+                    });
+                    //db.Customers.Add(objCustomer);
+                    db.SaveChanges();
+                    objCustomer = db.Customers.FirstOrDefault(m => m.CustomerName == item.CustomerName && m.Address == item.Address && m.NationalIdNo == item.NationalIdNo && m.Nationality == item.Nationality);
+                }
+            }
+
+            using (System.Transactions.TransactionScope scope = new System.Transactions.TransactionScope(TransactionScopeOption.Required))
+            {
+                Booking booking = new Booking();
+                booking.roomId = book[0].roomId;
+                booking.bookingNo = book[0].bookingno;
+                booking.CheckIn = book[0].CheckIn;
+                booking.CheckoutDate = book[0].CheckoutDate;
+                booking.customers = lstCustomer;
+                booking.NoOfPersons = book[0].NoOfPersons;
+                booking.ShortDescriptions = book[0].ShortDescriptions;
+
+
+                db.bookings.Add(booking);
+                db.SaveChanges();
+
+                scope.Complete();
+
+
+            }
+
+
+
+
+            return RedirectToAction("book");
+        }
+      
         protected override void Dispose(bool disposing)
         {
             if (disposing)

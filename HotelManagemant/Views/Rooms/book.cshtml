@@ -1,69 +1,76 @@
-﻿@model List<HotelManagemant.ViewModels.customerInfo>
+﻿@model IEnumerable<HotelManagemant.Models.Room>
 @{
     ViewBag.Title = "book";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>book</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("bookRoom", "rooms", FormMethod.Get))
 {
-    @Html.AntiForgeryToken()
-    if (Model != null && Model.Count > 0)
-    {
-        int j = 0;
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoofBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roomtype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
 
-        foreach (var i in Model)
+        @foreach (var item in Model)
         {
-<div class="row">
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.TextBoxFor(a => a[j].Id,new {@placeholder="Id",id="txtId" })
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.TextBoxFor(a => a[j].CustomerName, new { @placeholder = "CustomerName" })
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.TextBoxFor(a => a[j].Address, new { @placeholder = "Address" })
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.TextBoxFor(a => a[j].NationalIdNo, new { @placeholder = "NationalIdNo" })
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            @Html.TextBoxFor(a => a[j].Nationality, new { @placeholder = "Nationality" })
-        </div>
-    </div>
-    <a href="#" class="btn-link" id="btnAdd">Add</a>
-    <a href="#" class="btn-link" id="btnRemove">Remove</a>
-</div>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoofBeds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Roomtype)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <input type="checkbox" name="id" value="@item.id" />
+                </td>
+            </tr>
         }
-    }
-    <input type="submit" value="submit" class="btn btn-success" />
+
+    </table>
+
+    <input type="submit" value="Book" class="btn btn-primary" />
 }
-@section Scripts{   
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnAdd").click(function () {
-            var $div = $(this).parent();
-            var clone = $div.clone();
-            var index = clone.find("input#txtId").attr('name').match('/\d+/');
-            clone.find("input").each(function () {
-                var index = $(this).attr('name').match('/\d+/');
-                var oldN = $(this).attr('name');
-                var newN = oldN.replace(index, (parseInt(index) + 1));
+@Html.ActionLink("Create New", "Create", "", new { @class = "btn btn Primary" })
 
-              //  $(this).attr('id', newN);
-
-            })
-            $div.append(clone);
-        });
-    })
-    </script>
-    }

@@ -16,7 +16,7 @@ namespace HotelManagemant.Controllers
 {
     public class HotelsController : Controller
     {
-        private HotelDbContext db = new HotelDbContext();
+        private Context db = new Context();
 
         // GET: Hotels
         public ActionResult Index()

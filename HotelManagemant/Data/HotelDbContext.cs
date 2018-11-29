@@ -7,9 +7,9 @@ using System.Web;
 
 namespace HotelManagemant.Data
 {
-    public class HotelDbContext : DbContext
+    public class Context : DbContext
     {
-        public HotelDbContext() : base("defaultconnection")
+        public Context() : base("defaultconnection")
         {
 
         }

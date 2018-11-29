@@ -53,8 +53,11 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -184,6 +187,46 @@
     <Compile Include="Migrations\201811221006446_init4.cs" />
     <Compile Include="Migrations\201811221006446_init4.Designer.cs">
       <DependentUpon>201811221006446_init4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811270911446_dataBaseStruChanged.cs" />
+    <Compile Include="Migrations\201811270911446_dataBaseStruChanged.Designer.cs">
+      <DependentUpon>201811270911446_dataBaseStruChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811270916026_BookingNoadded.cs" />
+    <Compile Include="Migrations\201811270916026_BookingNoadded.Designer.cs">
+      <DependentUpon>201811270916026_BookingNoadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280843274_bookingNoAsForeignKey.cs" />
+    <Compile Include="Migrations\201811280843274_bookingNoAsForeignKey.Designer.cs">
+      <DependentUpon>201811280843274_bookingNoAsForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280854018_bookingNoAsForeignKey2.cs" />
+    <Compile Include="Migrations\201811280854018_bookingNoAsForeignKey2.Designer.cs">
+      <DependentUpon>201811280854018_bookingNoAsForeignKey2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280910592_bookingNoAsForeignKey21.cs" />
+    <Compile Include="Migrations\201811280910592_bookingNoAsForeignKey21.Designer.cs">
+      <DependentUpon>201811280910592_bookingNoAsForeignKey21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280911550_bookingNoAsForeignKey22.cs" />
+    <Compile Include="Migrations\201811280911550_bookingNoAsForeignKey22.Designer.cs">
+      <DependentUpon>201811280911550_bookingNoAsForeignKey22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280912181_bookingNoAsForeignKey3.cs" />
+    <Compile Include="Migrations\201811280912181_bookingNoAsForeignKey3.Designer.cs">
+      <DependentUpon>201811280912181_bookingNoAsForeignKey3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811281032030_bookingNoAsForeignKey31.cs" />
+    <Compile Include="Migrations\201811281032030_bookingNoAsForeignKey31.Designer.cs">
+      <DependentUpon>201811281032030_bookingNoAsForeignKey31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811281035445_bookingNoAsForeignKey32.cs" />
+    <Compile Include="Migrations\201811281035445_bookingNoAsForeignKey32.Designer.cs">
+      <DependentUpon>201811281035445_bookingNoAsForeignKey32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811281038215_makeCorrection.cs" />
+    <Compile Include="Migrations\201811281038215_makeCorrection.Designer.cs">
+      <DependentUpon>201811281038215_makeCorrection.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -349,6 +392,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811221006446_init4.resx">
       <DependentUpon>201811221006446_init4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811270911446_dataBaseStruChanged.resx">
+      <DependentUpon>201811270911446_dataBaseStruChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811270916026_BookingNoadded.resx">
+      <DependentUpon>201811270916026_BookingNoadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280843274_bookingNoAsForeignKey.resx">
+      <DependentUpon>201811280843274_bookingNoAsForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280854018_bookingNoAsForeignKey2.resx">
+      <DependentUpon>201811280854018_bookingNoAsForeignKey2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280910592_bookingNoAsForeignKey21.resx">
+      <DependentUpon>201811280910592_bookingNoAsForeignKey21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280911550_bookingNoAsForeignKey22.resx">
+      <DependentUpon>201811280911550_bookingNoAsForeignKey22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280912181_bookingNoAsForeignKey3.resx">
+      <DependentUpon>201811280912181_bookingNoAsForeignKey3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811281032030_bookingNoAsForeignKey31.resx">
+      <DependentUpon>201811281032030_bookingNoAsForeignKey31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811281035445_bookingNoAsForeignKey32.resx">
+      <DependentUpon>201811281035445_bookingNoAsForeignKey32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811281038215_makeCorrection.resx">
+      <DependentUpon>201811281038215_makeCorrection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
