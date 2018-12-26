@@ -1,32 +1,109 @@
 ﻿@model List<HotelManagemant.ViewModels.bookViewModel>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-clock-o fa-fw"></i>Book Room
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
 
-@using (Html.BeginForm())
-{
-    int i = 0;
-    foreach (var item in Model)
-    {
-    @Html.HiddenFor(a => a[i].roomId)
-    <div>@item.roomNo</div>
-    @Html.TextBoxFor(a => a[0].bookingno, new { @readonly = "readonly" ,@class="form-control"})
+                @if (TempData["Message"] != null)
+                {
+                <div class="col-md-12">
+                    <div class="alert alert-success">@TempData["Message"]</div>
+                </div>
+                }
 
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken();
+                   
+                    @Html.ValidationSummary();
+                    int i = 0;
+                    <fieldset style="border:1px solid;">
+                        <legend style="width:auto">Booking Info</legend>
+                        @Html.HiddenFor(a => a[i].roomId)
+                        <div class="col-md-12">
+                            <label>Room No:</label>@Model[0].roomNo
+                        </div>
+                        <div class="col-md-2">
+                            <label>Booking No</label>
+                            @Html.TextBoxFor(a => a[0].bookingno, new { @readonly = "readonly", @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Check In</label>
+                                @Html.TextBoxFor(a => a[0].CheckIn, new { placeholder = "CheckIn", @class = "form-control", type = "date" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Check Out</label>
+                                @Html.TextBoxFor(a => a[0].CheckoutDate, new { placeholder = "CheckOut", @class = "form-control", type = "date" })
 
-        i++;
-    }
-    @Html.TextBoxFor(a => a[0].NoOfPersons, new { placeholder = "Nationality", @class = "form-control" })
-    @Html.TextBoxFor(a => a[0].Address, new { placeholder = "Address", @class = "form-control" })
-    @Html.TextBoxFor(a => a[0].NationalIdNo, new { placeholder = "NationalIdNo", @class = "form-control" })
-    @Html.TextBoxFor(a => a[0].CustomerName, new { placeholder = "CustomerName", @class = "form-control" })
+                            </div>
 
-    @Html.TextBoxFor(a => a[0].CheckIn, new { placeholder = "CheckIn", @class = "form-control" })
-    @Html.TextBoxFor(a => a[0].CheckoutDate, new { placeholder = "CheckOut", @class = "form-control" })
-    @Html.TextBoxFor(a => a[0].ShortDescriptions, new { placeholder = "Short Description", @class = "form-control" })
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Price</label>
+                                @Html.TextBoxFor(a => a[i].Price, new { @readonly = "readonly", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Advanve Amount</label>
+                            @Html.TextBoxFor(a => a[0].Advanceprice, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Short Description</label>
+                                @Html.TextBoxFor(a => a[0].ShortDescriptions, new { placeholder = "Short Description", @class = "form-control" })
+                            </div>
+                        </div>
 
-    <input type="submit" value="submit" />
-}
+                    </fieldset>
 
+                    <fieldset style="border:1px solid;">
+                        <legend style="width:auto;">Customer Info</legend>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Name</label>
+                                @Html.TextBoxFor(a => a[i].CustomerName, new { placeholder = "CustomerName", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>NationalID No</label>
+                                @Html.TextBoxFor(a => a[i].NationalIdNo, new { placeholder = "NationalIdNo", @class = "form-control" })
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Address</label>
+                                @Html.TextBoxFor(a => a[i].Address, new { placeholder = "Address", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Persons</label>
+                                @Html.TextBoxFor(a => a[i].NoOfPersons, new { placeholder = "No Of Person", @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </fieldset>
+                    <br />
+                    <div class="col-md-12 text-center">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

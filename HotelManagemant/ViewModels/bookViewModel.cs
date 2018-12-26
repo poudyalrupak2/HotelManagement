@@ -20,5 +20,8 @@ namespace HotelManagemant.ViewModels
         public string Address { get; set; }
         public string NationalIdNo { get; set; }
         public string Nationality { get; set; }
+        public decimal Price { get; set; }
+        public int? Advanceprice { get; set; }
+
     }
 }

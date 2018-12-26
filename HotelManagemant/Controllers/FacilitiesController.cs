@@ -39,6 +39,8 @@ namespace HotelManagemant.Controllers
         // GET: Facilities/Create
         public ActionResult Create()
         {
+            List<SelectListItem> types = new List<SelectListItem> { new SelectListItem { Text = "Room", Value = "Room" }, new SelectListItem { Text = "Hotel", Value = "Hotel" } };
+            ViewBag.type = new SelectList(types, "Text", "Value");
             return View();
         }
 
@@ -49,11 +51,24 @@ namespace HotelManagemant.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Type")] Facilities facilities)
         {
+            
+
             if (ModelState.IsValid)
             {
                 db.facilities.Add(facilities);
                 db.SaveChanges();
+
+                TempData["Message"] = "Facilities Created Successfully.";
+
+
                 return RedirectToAction("Index");
+            }
+            List<SelectListItem> types = new List<SelectListItem> { new SelectListItem { Text = "Room", Value = "Room" }, new SelectListItem { Text = "Hotel", Value = "Hotel" } };
+           
+            ViewBag.type = new SelectList(types, "Text", "Value");
+            if (facilities.Type != "")
+            {
+                ViewBag.type = new SelectList(types, "Text", "Value",facilities.Type);
             }
 
             return View(facilities);
@@ -85,6 +100,9 @@ namespace HotelManagemant.Controllers
             {
                 db.Entry(facilities).State = EntityState.Modified;
                 db.SaveChanges();
+
+                TempData["Message"] = "Facilities Updated Successfully.";
+
                 return RedirectToAction("Index");
             }
             return View(facilities);

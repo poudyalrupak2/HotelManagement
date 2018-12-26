@@ -12,15 +12,19 @@ namespace HotelManagemant.Models
         [Key]
         public int BookingId { get; set; }
         public string bookingNo { get; set; }
-        [ForeignKey("Room")]
-        public int roomId { get; set; }
-        public virtual Room Room { get; set; }
+        public ICollection<Room> Room { get; set; }
+     
         public DateTime CheckIn { get; set; }
         public DateTime CheckoutDate { get; set; }
         public string NoOfPersons { get; set; }
         public string ShortDescriptions { get; set; }
-        public ICollection<customers> customers { get; set; }
-      
+        public int? AdvancedAmount { get; set; }
+        public virtual ICollection<customers> customers { get; set; }
+        public Booking()
+        {
+            this.Room = new HashSet<Room>();
+            this.customers = new HashSet<customers>();
+        }
 
     }
 }

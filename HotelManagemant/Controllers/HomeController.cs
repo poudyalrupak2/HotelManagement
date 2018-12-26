@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HotelManagemant.Models;
+using HotelManagemant.Data;
+
+
 
 namespace HotelManagemant.Controllers
 {
+    
     public class HomeController : Controller
     {
+        private Context db = new Context();
         public ActionResult Index()
         {
-            return View();
+            var objHotel = db.hotels.FirstOrDefault();
+            return View(objHotel);
         }
 
         public ActionResult About()

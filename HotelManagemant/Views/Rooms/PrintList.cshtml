@@ -1,0 +1,137 @@
+﻿@model HotelManagemant.ViewModels.printListViewModel
+
+@{
+    ViewBag.Title = "BookedRoom";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-clock-o fa-fw"></i>Billing Details
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+
+                <div class="col-md-12">
+                    @using (Html.BeginForm())
+                    {
+
+                        @Html.HiddenFor(m => m.BookingId)
+                        <table class="table table-bordered table-responsive">
+
+                            <tr><td colspan="3"><label>Bill No</label></td><td colspan="3">@Html.TextBoxFor(m => m.BillNo, new { @class = "form-control" })</td></tr>
+                            <tr>
+                                <td colspan="2"><label>Booking No:</label> <br /> @Model.bookingno</td>
+                                <td colspan="2"> <label>Check In:</label><br /> @Model.CheckIn.ToString("yyyy/MM/dd")</td>
+                                <td colspan="2"> <label>Check Out:</label>  @Html.TextBoxFor(m=>m.CheckoutDate, @"{0:yyyy\/MM\/dd}", new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Room No</th>
+                                <th colspan="3">Price in Rs.(Per Night)</th>
+                            </tr>
+                            @for (int i = 0; i < Model.Rooom.Count; i++)
+                            {
+                                <tr>
+                                    <td colspan="3">@Model.Rooom[i].RoomNo</td>
+                                    <td colspan="3" id="txtRate" data-id="@Model.Rooom[i].RoomNo">@Model.Rooom[i].Price</td>
+                                </tr>
+
+                            }
+                            <tr>
+                                <td colspan="3"><label>No of Days</label></td>
+                                <td colspan="3">
+                                    @Html.TextBoxFor(m => m.NoOfDays, new { @class = "form-control", id = "txtNoOfDays" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><label>Advance Amount(Rs.)</label></td>
+                                <td colspan="3">
+                                    @Html.TextBoxFor(m => m.AdvanceAmount, new { @class = "form-control", id = "txtAdvanced", readOnly = "readOnly" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><label>Discount Amount(Rs.)</label></td>
+                                <td colspan="3">
+                                    @Html.TextBoxFor(m => m.DiscountAmount, new { @class = "form-control", id = "txtDiscount" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><label>Remain Amount(Rs.)</label></td>
+                                <td colspan="3">
+                                    @Html.TextBoxFor(m => m.RemainAmount, new { @class = "form-control", id = "txtRemain" })
+                                </td>
+                            </tr>
+
+                        </table>
+                        <input type="submit" value="Save Payment" class="btn btn-primary" />
+                    }
+                    @*<div class="form-group">
+                            @using (Html.BeginForm())
+                            {
+                                <label>Booking No:</label> @Model.bookingno<br />
+                                <label>Check In:</label> @Model.CheckIn<br>
+                                @Html.HiddenFor(m => m.BookingId)
+                                @Html.HiddenFor(m => m.CheckIn)
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>CheckOut Date</label>
+                                        @Html.TextBoxFor(m => m.CheckoutDate, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                                for (int i = 0; i < Model.Rooom.Count; i++)
+                                {
+                                    <div class="col-md-12">
+                                        <label>
+                                            @Model.Rooom[i].RoomNo
+                                        </label>
+                                        <label id="txtRate" data-id="@Model.Rooom[i].RoomNo">@Model.Rooom[i].Price</label>
+                                    </div>
+                                }
+                                <div class="col-md-12 text-right">
+                                    @Html.TextBoxFor(m => m.AdvanceAmount, new { @class = "form-control", id = "txtAdvanced" })
+                                    @Html.TextBoxFor(m => m.DiscountAmount, new { @class = "form-control", id = "txtDiscount" })
+                                    @Html.TextBoxFor(m => m.RemainAmount, new { @class = "form-control", id = "txtRemain" })
+                                </div>
+                            }
+                        </div>*@
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    @section Scripts{
+        @Scripts.Render("~/bundles/jquery");
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
+            $(document).ready(function () {
+                $("#txtDiscount").keyup(function () {
+                    Remain();
+                })
+                $("#txtRemain").keyup(function () {
+                    Remain();
+                })
+                $("#txtNoOfDays").keyup(function () {
+                    Remain();
+                })
+
+
+            })
+
+            function calculateTotal() {
+                var total = 0;
+                $("table tr").find("td[id='txtRate']").each(function () {
+                    total += parseInt($(this).text());
+                })
+                return total;
+            }
+
+            function Remain() {
+                $("#txtRemain").val($("#txtNoOfDays").val() * (calculateTotal()) - $("#txtAdvanced").val() - $("#txtDiscount").val());
+            }
+
+        </script>
+    }
+

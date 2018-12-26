@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -228,28 +230,198 @@
     <Compile Include="Migrations\201811281038215_makeCorrection.Designer.cs">
       <DependentUpon>201811281038215_makeCorrection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812050147274_room-booking-many-to-many.cs" />
+    <Compile Include="Migrations\201812050147274_room-booking-many-to-many.Designer.cs">
+      <DependentUpon>201812050147274_room-booking-many-to-many.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812070750253_advance-amount-added.cs" />
+    <Compile Include="Migrations\201812070750253_advance-amount-added.Designer.cs">
+      <DependentUpon>201812070750253_advance-amount-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812070905002_Booking-costumer-relationship.cs" />
+    <Compile Include="Migrations\201812070905002_Booking-costumer-relationship.Designer.cs">
+      <DependentUpon>201812070905002_Booking-costumer-relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812070917257_Booking-costumer-relationship2.cs" />
+    <Compile Include="Migrations\201812070917257_Booking-costumer-relationship2.Designer.cs">
+      <DependentUpon>201812070917257_Booking-costumer-relationship2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812070948495_cus-book-mtmr.cs" />
+    <Compile Include="Migrations\201812070948495_cus-book-mtmr.Designer.cs">
+      <DependentUpon>201812070948495_cus-book-mtmr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812181045498_billing.cs" />
+    <Compile Include="Migrations\201812181045498_billing.Designer.cs">
+      <DependentUpon>201812181045498_billing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\customers.cs" />
     <Compile Include="Models\Facilities.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddCustomerViewModel.cs" />
+    <Compile Include="ViewModels\AddRoomViewModel.cs" />
+    <Compile Include="ViewModels\bookedViewModel.cs" />
     <Compile Include="ViewModels\bookViewModel.cs" />
+    <Compile Include="ViewModels\ChangeStatusViewModel.cs" />
     <Compile Include="ViewModels\HotelViewModel.cs" />
+    <Compile Include="ViewModels\printListViewModel.cs" />
     <Compile Include="ViewModels\roomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\countries.js" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.yadcf.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.yadcf.js" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\select.foundation.css" />
+    <Content Include="Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\style.css" />
+    <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\demo-page.css" />
     <Content Include="Content\examples.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\geochart.css" />
     <Content Include="Content\hover.css" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui-1.10.0.custom.min.css" />
+    <Content Include="Content\jquery.timepicker.min.css" />
+    <Content Include="Content\jquery.timepicker.min.js" />
+    <Content Include="Content\jquery.ui.core.min.js" />
+    <Content Include="Content\jquery.ui.position.min.js" />
+    <Content Include="Content\jquery.ui.tabs.min.js" />
+    <Content Include="Content\jquery.ui.timepicker.css" />
+    <Content Include="Content\jquery.ui.timepicker.js" />
+    <Content Include="Content\jquery.ui.widget.min.js" />
     <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\Sticky.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -257,6 +429,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\1.jpg" />
+    <Content Include="Images\286_180.svg" />
     <Content Include="Images\404.png" />
     <Content Include="Images\b3.png" />
     <Content Include="Images\climate.jpg" />
@@ -292,6 +465,9 @@
     <Content Include="Images\tick.png" />
     <Content Include="Images\visit.png" />
     <Content Include="Scripts\bars.js" />
+    <Content Include="Scripts\bjqs-1.3.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -302,27 +478,194 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\datatables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\datatables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\autoFill.foundation.js" />
+    <Content Include="Scripts\datatables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\datatables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\datatables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\bootstrap3-typeahead.js" />
+    <Content Include="Scripts\datatables\buttons.bootstrap.js" />
+    <Content Include="Scripts\datatables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\datatables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\datatables\buttons.colVis.js" />
+    <Content Include="Scripts\datatables\buttons.colVis.min.js" />
+    <Content Include="Scripts\datatables\buttons.flash.js" />
+    <Content Include="Scripts\datatables\buttons.flash.min.js" />
+    <Content Include="Scripts\datatables\buttons.foundation.js" />
+    <Content Include="Scripts\datatables\buttons.foundation.min.js" />
+    <Content Include="Scripts\datatables\buttons.html5.js" />
+    <Content Include="Scripts\datatables\buttons.html5.min.js" />
+    <Content Include="Scripts\datatables\buttons.jqueryui.js" />
+    <Content Include="Scripts\datatables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\buttons.print.js" />
+    <Content Include="Scripts\datatables\buttons.print.min.js" />
+    <Content Include="Scripts\datatables\dataTables.autoFill.js" />
+    <Content Include="Scripts\datatables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\datatables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\datatables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\datatables\dataTables.buttons.js" />
+    <Content Include="Scripts\datatables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\datatables\dataTables.colReorder.js" />
+    <Content Include="Scripts\datatables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\datatables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\datatables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\datatables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\datatables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\datatables\dataTables.foundation.js" />
+    <Content Include="Scripts\datatables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\datatables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\datatables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\dataTables.keyTable.js" />
+    <Content Include="Scripts\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\datatables\dataTables.material.js" />
+    <Content Include="Scripts\datatables\dataTables.material.min.js" />
+    <Content Include="Scripts\datatables\dataTables.responsive.js" />
+    <Content Include="Scripts\datatables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\datatables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\datatables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\datatables\dataTables.scroller.js" />
+    <Content Include="Scripts\datatables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\datatables\dataTables.select.js" />
+    <Content Include="Scripts\datatables\dataTables.select.min.js" />
+    <Content Include="Scripts\datatables\dataTables.semanticui.js" />
+    <Content Include="Scripts\datatables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\datatables\dataTables.uikit.js" />
+    <Content Include="Scripts\datatables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\datatables\datatables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\datatables\datatables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\datatables\autoFill.foundation.js" />
+    <Content Include="Scripts\datatables\datatables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\datatables\datatables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\datatables\datatables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\datatables\bootstrap3-typeahead.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.bootstrap.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.colVis.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.colVis.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.flash.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.flash.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.foundation.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.foundation.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.html5.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.html5.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.jqueryui.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.print.js" />
+    <Content Include="Scripts\datatables\datatables\buttons.print.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.autoFill.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.buttons.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.colReorder.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.foundation.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.keyTable.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.material.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.material.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.responsive.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.scroller.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.select.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.select.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.semanticui.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.uikit.js" />
+    <Content Include="Scripts\datatables\datatables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\datatables\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\datatables\datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\datatables\datatables\responsive.bootstrap.js" />
+    <Content Include="Scripts\datatables\datatables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\datatables\responsive.foundation.js" />
+    <Content Include="Scripts\datatables\datatables\responsive.foundation.min.js" />
+    <Content Include="Scripts\datatables\datatables\responsive.jqueryui.js" />
+    <Content Include="Scripts\datatables\datatables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables - Copy.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\datatables\responsive.bootstrap.js" />
+    <Content Include="Scripts\datatables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\datatables\responsive.foundation.js" />
+    <Content Include="Scripts\datatables\responsive.foundation.min.js" />
+    <Content Include="Scripts\datatables\responsive.jqueryui.js" />
+    <Content Include="Scripts\datatables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\chartinator.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\demo.css" />
     <Content Include="Scripts\gmaps.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.10.1.custom.min.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.nicescroll.js" />
+    <Content Include="Scripts\jquery.secret-source.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\modernizr.min.js" />
+    <Content Include="Scripts\nepali.datepicker.v2.2.min.css" />
+    <Content Include="Scripts\nepali.datepicker.v2.2.min.js" />
     <Content Include="Scripts\nivo-lightbox.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\skycons.js" />
+    <Content Include="Scripts\webGrid.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -355,6 +698,18 @@
     <Content Include="Views\Hotels\Index.cshtml" />
     <Content Include="Views\Rooms\BookRoom.cshtml" />
     <Content Include="Views\Rooms\book.cshtml" />
+    <Content Include="Views\Rooms\BookedRoom.cshtml" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Views\Rooms\PrintList.cshtml" />
+    <Content Include="Views\Rooms\AddCustomer.cshtml" />
+    <Content Include="Views\Rooms\AddRoom.cshtml" />
+    <Content Include="Views\Rooms\BillIndex.cshtml" />
+    <Content Include="Views\Rooms\BillPrint.cshtml" />
+    <Content Include="Views\Rooms\ChangeStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -423,12 +778,37 @@
     <EmbeddedResource Include="Migrations\201811281038215_makeCorrection.resx">
       <DependentUpon>201811281038215_makeCorrection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812050147274_room-booking-many-to-many.resx">
+      <DependentUpon>201812050147274_room-booking-many-to-many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812070750253_advance-amount-added.resx">
+      <DependentUpon>201812070750253_advance-amount-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812070905002_Booking-costumer-relationship.resx">
+      <DependentUpon>201812070905002_Booking-costumer-relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812070917257_Booking-costumer-relationship2.resx">
+      <DependentUpon>201812070917257_Booking-costumer-relationship2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812070948495_cus-book-mtmr.resx">
+      <DependentUpon>201812070948495_cus-book-mtmr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181045498_billing.resx">
+      <DependentUpon>201812181045498_billing.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

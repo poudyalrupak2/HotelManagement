@@ -13,11 +13,10 @@ html, body{
    font-size: 100%;
    background:#fff; 
 }
-#dvBody{
-min-height:600px;
-padding-top:100px;
-padding-left:20px;
-
+#dvBody {
+min-height:566px;
+padding-top:59px;
+padding-left:10px;
 }
 a {
   text-decoration: none;
@@ -33,7 +32,6 @@ a:hover {
 	position: fixed;
 	top: 0;
 	 width:87%;
-    margin: 0 auto;
 	z-index: 1;
 	background:#fff;
 }
@@ -252,7 +250,7 @@ a:hover {
 /*--nav strip start here--*/
 .header-main {
     background:#fff;
-    padding: 1em 2em;
+    padding:0px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 .header-right {
@@ -265,7 +263,7 @@ a:hover {
 }
 .logo-name {
     float: left;
-    width: 40%;
+    width: 30%;
     margin: 0% 3% 0% 2%;
 }
 .logo-name h1 {
@@ -4249,7 +4247,7 @@ canvas#bar {
     width: 275px !important;
 }
 .header-main {
-    padding: 1em 1em;	
+    padding: 0px;	
 }
 .fixed {
     width: 83%;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,11 @@ namespace HotelManagemant.Models
         public string Address { get; set; }
         public string NationalIdNo { get; set; }
         public string Nationality { get; set; }
+        public ICollection<Booking> Booking { get; set; }
+        public customers()
+        {
+            this.Booking = new HashSet<Booking>();
+        }
+        
     }
 }

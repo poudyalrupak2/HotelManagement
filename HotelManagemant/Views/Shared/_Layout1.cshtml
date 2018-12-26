@@ -327,6 +327,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!--market updates updates-->
 
                 </div>
+                
                 <div class="clearfix"> </div>
                 <!--inner block end here-->
                 <!--copy rights start here-->
@@ -346,30 +347,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="menu">
                 <ul id="menu">
-                    <li id="menu-home"><a href="index.html"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
+                    <li id="menu-home"><a href="@Url.Action("Index","Home")"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                     <li>
-                        <a href="#"><i class="fa fa-cogs"></i><span>Components</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                        <a href="#"><i class="fa fa-cogs"></i><span>Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
                         <ul>
-                            <li><a href="grids.html">Grids</a></li>
-                            <li><a href="portlet.html">Portlets</a></li>
+                            <li><a href="@Url.Action("Create","Rooms")">Create</a></li>
+                            <li><a href="@Url.Action("Index","Rooms")">Index</a></li>
                         </ul>
                     </li>
                     <li id="menu-comunicacao">
-                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Element</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Booked Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
                         <ul id="menu-comunicacao-sub">
                             <li id="menu-mensagens" style="width: 120px">
-                                <a href="buttons.html">Buttons</a>
+                                <a href="@Url.Action("Book","Rooms")">Create</a>
                             </li>
-                            <li id="menu-arquivos"><a href="typography.html">Typography</a></li>
-                            <li id="menu-arquivos"><a href="icons.html">Icons</a></li>
+                            <li id="menu-arquivos"><a href="@Url.Action("BookedRoom","Rooms")">Booked Rooms</a></li>
+                           
                         </ul>
                     </li>
-                    <li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>
+                    <li><a href="@Url.Action("BillIndex","Rooms")"><i class="fa fa-file-text-o"></i><span>Print Payment</span></a></li>
                     <li id="menu-academico">
-                        <a href="#"><i class="fa fa-file-text"></i><span>Pages</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                        <a href="#"><i class="fa fa-file-text"></i><span>Facilities</span><span class="fa fa-angle-right" style="float: right"></span></a>
                         <ul id="menu-academico-sub">
-                            <li id="menu-academico-boletim"><a href="login.html">Login</a></li>
-                            <li id="menu-academico-avaliacoes"><a href="signup.html">Sign Up</a></li>
+                            <li id="menu-academico-boletim"><a href="@Url.Action("create","facilities")">Create</a></li>
+                            <li id="menu-academico-avaliacoes"><a href="@Url.Action("Index", "facilities")">Index</a></li>
                         </ul>
                     </li>
 
@@ -388,13 +389,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li id="menu-academico-boletim"><a href="blank.html">Blank</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i><span>E-Commerce</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul id="menu-academico-sub">
-                            <li id="menu-academico-avaliacoes"><a href="product.html">Product</a></li>
-                            <li id="menu-academico-boletim"><a href="price.html">Price</a></li>
-                        </ul>
-                    </li>
+                   
                 </ul>
             </div>
         </div>

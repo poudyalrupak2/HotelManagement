@@ -1,76 +1,54 @@
 ﻿@model IEnumerable<HotelManagemant.Models.Room>
 @{
+    /**/
+
     ViewBag.Title = "book";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-@using (Html.BeginForm("bookRoom", "rooms", FormMethod.Get))
-{
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Capacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoofBeds)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Roomtype)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="bg-primary">
+            <i class="fa fa-clock-o fa-fw"></i> Rooms
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
 
-        @foreach (var item in Model)
+        string panelClass = "bg-success";
+        if (item.Status != "Available")
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RoomNo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Capacity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NoofBeds)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Roomtype)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImageName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <input type="checkbox" name="id" value="@item.id" />
-                </td>
-            </tr>
+            panelClass = "bg-danger";
         }
+        <div style="padding-top:5px;" class="col-md-3 text-center">
+            <div class="card" style="width:18rem; border-radius:25px;">
+                @*<img class="card-img-top" src="~/Images/286_180.svg" alt="Card image cap" style="width:286px;height:180px;">*@
 
-    </table>
+                <div class="card-body @panelClass">
+                    <p class="card-text">
+                        RoomNo: @item.RoomNo<br />
+                        Capacity: @item.Capacity<br />
+                        No of Beds: @item.NoofBeds<br />
+                        RoomType: @item.Roomtype<br />
+                        Price: @item.Price<br />
+                    </p>
+                    <span class="text-center">
+                        @Html.ActionLink("ChangeStatus", "ChangeStatus", new { id = item.id }, new { @class = "btn btn-default" }) |
+                        @if (panelClass == "bg-success")
+                        {
+                            @Html.ActionLink("Book", "bookRoom", new { id = item.id }, new { @class = "btn btn-default" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Book", "bookRoom", new { id = item.id }, new { @class = "btn btn-default", disabled = "true" })
+                        }
 
-    <input type="submit" value="Book" class="btn btn-primary" />
-}
-@Html.ActionLink("Create New", "Create", "", new { @class = "btn btn Primary" })
+                    </span>
+                    <div style="height:5px;"></div>
+                </div>
+            </div>
+        </div>
 
+    }
+    }
+</div>

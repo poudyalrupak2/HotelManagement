@@ -1,0 +1,56 @@
+﻿@model HotelManagemant.ViewModels.AddCustomerViewModel
+@{
+    ViewBag.Title = "AddCustomer";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-clock-o fa-fw"></i>Add Customer
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+
+                @using (Html.BeginForm())
+                {
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Booking No</label>
+                            @Html.TextBoxFor(m => m.BookingNo, new { @class = "form-control", readOnly = "readOnly" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Name</label>
+                            @Html.TextBoxFor(a => a.CustomerName, new { placeholder = "CustomerName", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>NationalID No</label>
+                            @Html.TextBoxFor(a => a.NationalIdNo, new { placeholder = "NationalIdNo", @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Address</label>
+                            @Html.TextBoxFor(a => a.Address, new { placeholder = "Address", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            @Html.TextBoxFor(a => a.Nationality, new { placeholder = "Address", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <input class="btn btn-primary" value="Add" type="submit" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

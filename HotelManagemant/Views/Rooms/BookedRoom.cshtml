@@ -1,0 +1,212 @@
+﻿@model List<HotelManagemant.ViewModels.bookedViewModel>
+@{
+    ViewBag.Title = "BookedRoom";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-clock-o fa-fw"></i> Booking Details
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                @if (TempData["Message"] != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-success">@TempData["Message"]</div>
+                    </div>
+                }
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group">
+
+                                <label>Booking No:</label><input type="text" id="txtName" class="form-control" name="name">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group">
+
+                                <label>Check-In Date:</label><input type="text" id="txtSearch" class="form-control" name="email" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group">
+
+                                <label>Check-out Date:</label><input type="text" id="txtinvoice" class="form-control" name="invoice">
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered tbl-accordion" id="Customer">
+                        <thead>
+                            <tr>
+                                <th>Booking No</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="tbl-accordion-section" data-id="@item.bookingno">
+                                    <td>@item.bookingno</td>
+                                    <td>@item.CheckIn.ToString("yyyy MMM dd")</td>
+                                    <td>@item.CheckoutDate.ToString("yyyy MMM dd")</td>
+                                    <td>
+                                        @Html.ActionLink("View Payment", "PrintList", new { id = item.bookingno }, new { @class = "btn btn-default" }) |
+                                        @Html.ActionLink("Add Customer", "AddCustomer", new { id = item.bookingno }, new { @class = "btn btn-info" }) |
+                                        @Html.ActionLink("Add Room", "AddRoom", new { id = item.bookingno }, new { @class = "btn btn-default" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal -->
+                @*<div class="modal fade" id="AddCustomer" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="AddCustomerLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Booking No</label>
+                                @Html.TextBox("BookingNo", null, new { placeholder = "BookingNo", @class = "form-control", id = "txtBookingNo", readOnly = "readOnly" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Name</label>
+                                @Html.TextBox("CustomerName", null, new { placeholder = "CustomerName", @class = "form-control", id = "txtCustomerName" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>NationalID No</label>
+                                @Html.TextBox("NationalIdNo", null, new { placeholder = "NationalIdNo", @class = "form-control", id = "txtNationalNo" })
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                @Html.TextBox("Address", null, new { placeholder = "Address", @class = "form-control", id = "txtAddress" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+
+
+            </div>
+    </div>
+</div>
+    </div>
+
+
+@section Scripts {
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/datatables/jquery.dataTables.js"></script>
+
+    <script src="~/Scripts/datatables/dataTables.bootstrap.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="~/Scripts/datatables/bootstrap3-typeahead.js"></script>
+
+    <script src="~/Content/DataTables/css/jquery.dataTables.yadcf.js"></script>
+
+    <link rel=" stylesheet" href="~/Content/DataTables/css/jquery.dataTables.yadcf.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link rel=" stylesheet" href="~/Content/DataTables/css/jquery.dataTables.yadcf.css" />
+
+    <link rel="stylesheet" href="~/Content/DataTables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="~/Content/DataTables/css/dataTables.bootstrap.css" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("body #btnAddCustomer").click(function () {
+                var $tr = $(this).parent().parent();
+                $("#txtBookingId").val($tr.find('td:first').text());
+                $("#AddCustomer").modal();
+            });
+
+            var t = $("#Customer").DataTable({
+                "dom": "rt",
+                "order": [[0, "assc"]],
+
+            });
+
+
+
+
+            table = $('#Customer').DataTable();
+
+
+
+
+            $('#txtSearch').on('keyup change', function () {
+                if (table.columns(1).search() !== this.value) {
+                    table.columns(1)
+                        .search(this.value)
+                        .draw();
+                }
+            });
+            $('#txtName').on('keyup change', function () {
+                if (table.columns(0).search() !== this.value) {
+                    table.columns(0)
+                        .search(this.value)
+                        .draw();
+                }
+            });
+            $('#txtinvoice').on('keyup change', function () {
+                if (table.columns(2).search() !== this.value) {
+                    table.columns(2)
+                        .search(this.value)
+                        .draw();
+                }
+            });
+
+            $('#myInputTextField').keyup(function () {
+                oTable.search($(this).val()).draw();
+            });
+
+
+        });
+
+    </script>
+
+}
+

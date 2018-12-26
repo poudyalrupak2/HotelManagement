@@ -15,6 +15,7 @@ namespace HotelManagemant.Models
         public int NoofBeds { get; set; }
         public string Roomtype { get; set; }
         public virtual ICollection<Facilities> Facilities { get; set; }
+        public virtual  ICollection<Booking> Bookings { get; set; }
         public Decimal Price { get; set; }
         public string Description { get; set; }
         public string ImageName { get; set; }
@@ -25,7 +26,9 @@ namespace HotelManagemant.Models
         public Room()
         {
             this.Facilities = new HashSet<Facilities>();
+            this.Bookings = new HashSet<Booking>();
         }
+       
 
     }
 
