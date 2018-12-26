@@ -14,7 +14,7 @@ namespace HotelManagemant.Models
         public ICollection<Room> Rooms { get; set; }
         public ICollection<Facilities> Facilities { get; set; }
         public string Location { get; set; }
-        public string Email{ get; set; }
+        public String Email{ get; set; }
         public string Ownername { get; set; }
         public string ImageName { get; set; }
         [NotMapped]

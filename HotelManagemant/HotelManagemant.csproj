@@ -158,10 +158,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Data\HotelDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,12 +257,29 @@
     <Compile Include="Migrations\201812181045498_billing.Designer.cs">
       <DependentUpon>201812181045498_billing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812260650476_Login-added.cs" />
+    <Compile Include="Migrations\201812260650476_Login-added.Designer.cs">
+      <DependentUpon>201812260650476_Login-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812260943514_menuadded.cs" />
+    <Compile Include="Migrations\201812260943514_menuadded.Designer.cs">
+      <DependentUpon>201812260943514_menuadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812260958070_menuadded1.cs" />
+    <Compile Include="Migrations\201812260958070_menuadded1.Designer.cs">
+      <DependentUpon>201812260958070_menuadded1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\customers.cs" />
     <Compile Include="Models\Facilities.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\MenuCategory.cs" />
+    <Compile Include="Models\MenuContinent.cs" />
+    <Compile Include="Models\MenuRegistration.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -710,11 +730,13 @@
     <Content Include="Views\Rooms\BillIndex.cshtml" />
     <Content Include="Views\Rooms\BillPrint.cshtml" />
     <Content Include="Views\Rooms\ChangeStatus.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Hotel\" />
     <Folder Include="Images\room\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -795,6 +817,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812181045498_billing.resx">
       <DependentUpon>201812181045498_billing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812260650476_Login-added.resx">
+      <DependentUpon>201812260650476_Login-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812260943514_menuadded.resx">
+      <DependentUpon>201812260943514_menuadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812260958070_menuadded1.resx">
+      <DependentUpon>201812260958070_menuadded1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
