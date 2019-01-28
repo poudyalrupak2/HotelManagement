@@ -1752,7 +1752,7 @@ p.grid1 {
 }
 .login-block input[type="text"], .login-block input[type="password"] {
     font-size: 0.9em;
-    padding: 10px 20px;
+    padding: 8px 16px;
     width: 100%;
     color:#8C8C8C;
     outline: none;

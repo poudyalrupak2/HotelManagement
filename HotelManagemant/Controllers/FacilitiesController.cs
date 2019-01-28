@@ -7,10 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HotelManagemant.Data;
+using HotelManagemant.Filters;
 using HotelManagemant.Models;
 
 namespace HotelManagemant.Controllers
 {
+    [SessionCheck]
+[Authorize(Roles= "Superadmin")]
     public class FacilitiesController : Controller
     {
         private Context db = new Context();

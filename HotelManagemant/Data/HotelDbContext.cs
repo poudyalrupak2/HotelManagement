@@ -18,6 +18,7 @@ namespace HotelManagemant.Data
         public DbSet<MenuCategory> Menu { get; set; }
         public DbSet<MenuContinent> Continent { get; set; }
         public DbSet<Image> Image { get; set; }
+        public DbSet<MenuRegistration> MenuReg { get; set; }
 
         public DbSet<customers> Customers { get; set; }
         public DbSet<Booking> bookings { get; set; }

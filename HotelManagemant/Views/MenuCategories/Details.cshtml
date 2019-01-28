@@ -1,0 +1,64 @@
+﻿@model HotelManagemant.Models.MenuCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div>
+    <div style="overflow-x:auto;">
+        <div class="alert">
+            <table class="table table-responsive table-bordered">
+
+                <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.CategoryName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.CategoryName)
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                            @Html.DisplayNameFor(model => model.Detail)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Detail)
+                        </td>
+                    </tr>
+                <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.thumbnail)
+                        </td>
+
+                        <td>
+                            <img src="@Model.thumbnail" />
+                        </td>
+
+                      
+
+                    </tr>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id },new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-primary" })
+                </p>

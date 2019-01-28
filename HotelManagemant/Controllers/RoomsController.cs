@@ -19,6 +19,7 @@ using System.Transactions;
 
 namespace HotelManagemant.Controllers
 {
+    [Authorize(Roles ="Superadmin")]
     public class RoomsController : Controller
     {
         private Context db = new Context();
@@ -82,10 +83,10 @@ namespace HotelManagemant.Controllers
                     string filename1 = Path.GetFileNameWithoutExtension(Image.FileName);
                     string extension1 = Path.GetExtension(Image.FileName);
                     filename1 = room.RoomNo + extension1;
-                    room.ImageName = "/images/room/" + filename1;
+                    room.ImageName = "/images/Rooms/" + filename1;
                     if (img.Width < 1000 || img.Width > 1000)
                         img.Resize(903, 631);
-                    filename1 = Path.Combine(Server.MapPath("~/Images/room/"), filename1);
+                    filename1 = Path.Combine(Server.MapPath("~/Images/Rooms/"), filename1);
                     img.Save(filename1);
                 }
                 var facilites = room.facilitiesId;
@@ -142,12 +143,15 @@ namespace HotelManagemant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,RoomNo,Capacity,NoofBeds,Roomtype,Price,Description,ImageName,Status")] Room room, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "id,RoomNo,Capacity,NoofBeds,Roomtype,Price,Description,Status")] Room room, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+
                 if (Image != null)
                 {
+                    WebImage img = new WebImage(Image.InputStream);
+
                     string firstpath = "/Images/";
                     string subPath = "/Images/Rooms/"; // your code goes here
                     bool imageexist = System.IO.Directory.Exists(Server.MapPath(firstpath));
@@ -165,8 +169,10 @@ namespace HotelManagemant.Controllers
                     string extension1 = Path.GetExtension(Image.FileName);
                     filename1 = room.RoomNo + extension1;
                   room.ImageName= "/images/Rooms/" + filename1;
+                    if (img.Width < 1000 || img.Width > 1000)
+                        img.Resize(903, 631);
                     filename1 = Path.Combine(Server.MapPath("~/Images/Rooms/"), filename1);
-                    Image.SaveAs(filename1);
+                    img.Save(filename1);
                 }
 
                 db.Entry(room).State = EntityState.Modified;
@@ -348,19 +354,19 @@ namespace HotelManagemant.Controllers
 
             }
             return View(objBooked);
-            var userProfiles = db.bookings.ToList().SelectMany(c => c.Room).ToList();
-            // var userProfileViewModels = userProfiles.Select(userProfile => userProfile.ToViewModel()).ToList();
+            //var userProfiles = db.bookings.ToList().SelectMany(c => c.Room).ToList();
+            //// var userProfileViewModels = userProfiles.Select(userProfile => userProfile.ToViewModel()).ToList();
 
-            // IQueryable<Booking> query = db.bookings;
-            //query = query.Where( ... ); // filters down to exactly one
-            //query = query.Include(r => r.Room);
-
-
-            List<bookedViewModel> book = new List<bookedViewModel>();
+            //// IQueryable<Booking> query = db.bookings;
+            ////query = query.Where( ... ); // filters down to exactly one
+            ////query = query.Include(r => r.Room);
 
 
+            //List<bookedViewModel> book = new List<bookedViewModel>();
 
-            //return View(userProfileViewModels);
+
+
+            ////return View(userProfileViewModels);
         }
 
 

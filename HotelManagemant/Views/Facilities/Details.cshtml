@@ -1,35 +1,53 @@
 ﻿@model HotelManagemant.Models.Facilities
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>Details</h2>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 
 <div>
-    <h4>Facilities</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <div style="overflow-x:auto;">
+        <div class="alert">
+            <table class="table table-responsive table-bordered">
+                <tr>
+                    <td>
+                    @Html.DisplayNameFor(model => model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+                    </tr>
+                <tr>
+                    <td>
+                    @Html.DisplayNameFor(model => model.Type)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(model => model.Type)
+                </td>
+                </tr>
+                </table>
+            
+        </div>
+        </div>
+    </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </p>

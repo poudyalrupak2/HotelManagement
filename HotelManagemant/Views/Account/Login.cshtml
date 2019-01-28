@@ -33,38 +33,30 @@
     <div class="login-page">
         <div class="login-main">
             <div class="login-head">
+                <span style="color:red">
+                    @Html.ValidationMessage("")
+                </span>
                 <h1>Login</h1>
             </div>
             <div class="login-block">
                 @using (Html.BeginForm(FormMethod.Post))
                 {
-                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", required = "" })
-                    @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", @class = "lock", required = "" })
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", required = "", @class = "col-sm-2 col-form-label" })
+                    </div>
+                </div>
+                    @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", type = "Password", @class = "lock", required = "" })
 
                     <div class="forgot-top-grids">
                         <div class="forgot-grid">
-                            <ul>
-                                <li>
-                                    <input type="checkbox" id="brand1" value="">
-                                    <label for="brand1"><span></span>Remember me</label>
-                                </li>
-                            </ul>
+
                         </div>
-                        <div class="forgot">
-                            <a href="#">Forgot password?</a>
-                        </div>
+
                         <div class="clearfix"> </div>
                     </div>
                     <input type="submit" name="Sign In" value="Login">
-                    <h3>Not a member?<a href="signup.html"> Sign up now</a></h3>
-                    <h2>or login with</h2>
-                    <div class="login-icons">
-                        <ul>
-                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
+
                 }
                 <h5><a href="index.html">Go Back to Home</a></h5>
             </div>

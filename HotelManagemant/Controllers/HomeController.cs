@@ -5,12 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using HotelManagemant.Models;
 using HotelManagemant.Data;
-
-
+using HotelManagemant.Filters;
 
 namespace HotelManagemant.Controllers
 {
-    
+    [SessionCheck]
+    [Authorize(Roles = "Admin")]
+
     public class HomeController : Controller
     {
         private Context db = new Context();

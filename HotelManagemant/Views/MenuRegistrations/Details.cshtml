@@ -1,0 +1,75 @@
+﻿@model HotelManagemant.Models.MenuRegistration
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        witdh: 100%;
+        border: 1px solid #tdd;
+    }
+
+    th, td {
+        text-align: left;
+        patding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div>
+    <div style="overflow-x:auto;">
+        <div class="alert">
+            <table class="table table-responsive table-bordered">
+
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Itemname)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.Itemname)
+                </td>
+</tr>
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Ingrident)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.Ingrident)
+                </td>
+</tr>
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Price)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.Price)
+                </td>
+                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Thumbnail)
+                    </td>
+
+                    <td>
+                        <img src="@Model.Thumbnail" />
+                    </td>
+
+                </tr> 
+                </table>
+                </div>
+        </div>
+    </div>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-primary" })
+        </p>

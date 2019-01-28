@@ -1,0 +1,27 @@
+﻿@model HotelManagemant.Models.MenuContinent
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MenuContinent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContinentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContinentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

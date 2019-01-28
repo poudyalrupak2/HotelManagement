@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HotelManagemant.Models.MenuCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.thumbnail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.thumbnail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-primary" }) |
+            </td>
+        </tr>
+    }
+
+</table>

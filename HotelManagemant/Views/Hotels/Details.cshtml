@@ -1,67 +1,83 @@
 ﻿@model HotelManagemant.Models.Hotel
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
 
-<h2>Details</h2>
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 
 <div>
-    <h4>Hotel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HotelName)
-        </dt>
+    <div style="overflow-x:auto;">
+        <div class="alert">
+            <table class="table table-responsive table-bordered">
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.HotelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.HotelName)
+                </td>
+                   </tr>
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Type)
+                </td>
+                    </tr>
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Location)
+                </td>
+                    </tr>
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Email)
+                </td>
+                    </tr>
+                <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Ownername)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Ownername)
+                </td>
+                    </tr>
+                <tr>
+                <td>
+                    Image
+                </td>
+                <td>
+                    <img src="@Model.ImageName" />
+                </td>
+                </tr>
+                </table>
+        </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.HotelName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ownername)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ownername)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new {@class="btn btn-primary"}) |
+            @Html.ActionLink("Back to List", "Index",null,new {@class="btn btn-primary"})
+        </p>

@@ -14,9 +14,7 @@ namespace HotelManagemant.Models
         public string ImageName { get; set; }
         public long Size { get; set; }
         public string Path { get; set; }
-        public int TradingGoodsId { get; set; }
         public virtual MenuRegistration MenuRegistration { get; set; }
-        public ICollection<Image> Images { get; set; }
 
     }
 }

@@ -159,13 +159,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
+    <Compile Include="Controllers\MenuCategoriesController.cs" />
+    <Compile Include="Controllers\MenuContinentsController.cs" />
+    <Compile Include="Controllers\MenuRegistrationsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Data\HotelDbContext.cs" />
+    <Compile Include="Filter\SessionCheck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,6 +272,18 @@
     <Compile Include="Migrations\201812260958070_menuadded1.Designer.cs">
       <DependentUpon>201812260958070_menuadded1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812261059580_init21.cs" />
+    <Compile Include="Migrations\201812261059580_init21.Designer.cs">
+      <DependentUpon>201812261059580_init21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812270554500_image-updated.cs" />
+    <Compile Include="Migrations\201812270554500_image-updated.Designer.cs">
+      <DependentUpon>201812270554500_image-updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812270609501_name-managed.cs" />
+    <Compile Include="Migrations\201812270609501_name-managed.Designer.cs">
+      <DependentUpon>201812270609501_name-managed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -283,12 +298,14 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
     <Compile Include="ViewModels\AddCustomerViewModel.cs" />
     <Compile Include="ViewModels\AddRoomViewModel.cs" />
     <Compile Include="ViewModels\bookedViewModel.cs" />
     <Compile Include="ViewModels\bookViewModel.cs" />
     <Compile Include="ViewModels\ChangeStatusViewModel.cs" />
     <Compile Include="ViewModels\HotelViewModel.cs" />
+    <Compile Include="ViewModels\PasswordConform.cs" />
     <Compile Include="ViewModels\printListViewModel.cs" />
     <Compile Include="ViewModels\roomViewModel.cs" />
   </ItemGroup>
@@ -731,6 +748,22 @@
     <Content Include="Views\Rooms\BillPrint.cshtml" />
     <Content Include="Views\Rooms\ChangeStatus.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\MenuContinents\Create.cshtml" />
+    <Content Include="Views\MenuContinents\Delete.cshtml" />
+    <Content Include="Views\MenuContinents\Details.cshtml" />
+    <Content Include="Views\MenuContinents\Edit.cshtml" />
+    <Content Include="Views\MenuContinents\Index.cshtml" />
+    <Content Include="Views\MenuCategories\Create.cshtml" />
+    <Content Include="Views\MenuCategories\Delete.cshtml" />
+    <Content Include="Views\MenuCategories\Details.cshtml" />
+    <Content Include="Views\MenuCategories\Edit.cshtml" />
+    <Content Include="Views\MenuCategories\Index.cshtml" />
+    <Content Include="Views\MenuRegistrations\Create.cshtml" />
+    <Content Include="Views\MenuRegistrations\Delete.cshtml" />
+    <Content Include="Views\MenuRegistrations\Details.cshtml" />
+    <Content Include="Views\MenuRegistrations\Edit.cshtml" />
+    <Content Include="Views\MenuRegistrations\Index.cshtml" />
+    <Content Include="Views\Account\NewPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -826,6 +859,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812260958070_menuadded1.resx">
       <DependentUpon>201812260958070_menuadded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261059580_init21.resx">
+      <DependentUpon>201812261059580_init21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812270554500_image-updated.resx">
+      <DependentUpon>201812270554500_image-updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812270609501_name-managed.resx">
+      <DependentUpon>201812270609501_name-managed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
