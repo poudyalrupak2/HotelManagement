@@ -1,0 +1,54 @@
+﻿@model IEnumerable<int>
+
+@{
+    ViewBag.Title = "ViewBilling";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Booked Tables</div>
+
+        <div class="panel-body">
+
+
+
+            <table class="table table-responsive" id="table1">
+                <thead>
+                    <tr>
+                        <th>
+                            Table No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" id="btnAddItem" href="/Products/Index/@item">Add Item</a>
+                                <a class="btn btn-primary" id="btnBillItem" href="/Products/Bill/@item">Print Bill</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" />
+<link href="~/Content/DataTables/css/responsive.bootstrap.min.css" />
+<script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+
+<script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(function () {
+        $("#table1").DataTable();
+    });
+</script>

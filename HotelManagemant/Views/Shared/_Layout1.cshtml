@@ -28,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--<script src="lib/html5shiv/html5shiv.js"></script>-->
     <!-- Chartinator  -->
     <script src="~/Scripts/chartinator.js"></script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         jQuery(function ($) {
 
             var chart3 = $('#geoChart').chartinator({
@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             });
         });
-    </script>
+    </script>*@
     <!--geo chart-->
     <!--skycons-icons-->
     <script src="~/Scripts/skycons.js"></script>
@@ -110,13 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <!--<img id="logo" src="" alt="Logo"/>-->
                             </a>
                         </div>
-                        <!--search-box-->
-                        <div class="search-box">
-                            <form>
-                                <input type="text" placeholder="Search..." required="">
-                                <input type="submit" value="">
-                            </form>
-                        </div><!--//end-search-box-->
+                       <!--//end-search-box-->
                         <div class="clearfix"> </div>
                     </div>
                     <div class="header-right">
@@ -206,6 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><a href="@Url.Action("Index","Rooms")">Index</a></li>
                         </ul>
                     </li>
+
                     <li id="menu-comunicacao">
                         <a href="#"><i class="fa fa-book nav_icon"></i><span>Booked Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
                         <ul id="menu-comunicacao-sub">
@@ -213,10 +208,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <a href="@Url.Action("Book","Rooms")">Create</a>
                             </li>
                             <li id="menu-arquivos"><a href="@Url.Action("BookedRoom","Rooms")">Booked Rooms</a></li>
-                           
+
                         </ul>
                     </li>
-                    <li><a href="@Url.Action("BillIndex","Rooms")"><i class="fa fa-file-text-o"></i><span>Print Payment</span></a></li>
+                    <li><a href="@Url.Action("BillIndex","Rooms")"><i class="fa fa-file-text-o"></i><span>Hotels Payment</span></a></li>
                     <li id="menu-academico">
                         <a href="#"><i class="fa fa-file-text"></i><span>Facilities</span><span class="fa fa-angle-right" style="float: right"></span></a>
                         <ul id="menu-academico-sub">
@@ -225,18 +220,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="@Url.Action("Logout","Account")"><i class="fa fa-envelope"></i><span>Logout</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                      
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-cog"></i><span>System</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul id="menu-academico-sub">
-                            <li id="menu-academico-avaliacoes"><a href="404.html">404</a></li>
-                            <li id="menu-academico-boletim"><a href="blank.html">Blank</a></li>
+                    <li id="menu-home"><a href="@Url.Action("Index","Products")"><i class="fa fa-tachometer"></i><span>Products</span></a></li>
+                    <li id="menu-comunicacao">
+                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Register Foods</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                        <ul id="menu-comunicacao-sub">
+                            <li id="menu-mensagens" style="width: 120px">
+                                <a href="@Url.Action("Index","RegisterFoods")">food</a>
+                            </li>
+                            <li id="menu-arquivos"><a href="@Url.Action("Index","FoodCategories")"> Food Category</a></li>
+
                         </ul>
                     </li>
-                   
+
+                    <li id="menu-comunicacao">
+                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Register Drinks</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                        <ul id="menu-comunicacao-sub">
+                            <li id="menu-mensagens" style="width: 120px">
+                                <a href="@Url.Action("Index","DrinkRegisters")">Drinks</a>
+                            </li>
+                            <li id="menu-arquivos"><a href="@Url.Action("Index","DrinkCategories")"> Drink Category</a></li>
+
+                        </ul>
+                    </li>
+                    <li id="menu-home"><a href="@Url.Action("Index","TableRegisters")"><i class="fa fa-tachometer"></i><span>Tables</span></a></li>
+                    <li>
+                        <a href="@Url.Action("Logout","Account")"><i class="fa fa-envelope"></i><span>Logout</span><span class="fa fa-angle-right" style="float: right"></span></a>
+
+                    </li>
+
                 </ul>
             </div>
         </div>

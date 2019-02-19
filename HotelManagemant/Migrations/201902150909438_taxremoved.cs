@@ -1,0 +1,18 @@
+namespace HotelManagemant.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class taxremoved : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.BillingInfoes", "Tax");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.BillingInfoes", "Tax", c => c.Decimal(nullable: false, precision: 18, scale: 2));
+        }
+    }
+}

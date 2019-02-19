@@ -1,0 +1,97 @@
+﻿@model HotelManagemant.Models.RegisterFood
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        witdh: 100%;
+        border: 1px solid #ttd;
+    }
+
+    th, td {
+        text-align: left;
+        patding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Details</div>
+
+        <div class="panel-body">
+            <table class="table table-responsive table-bordered">
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.FoodCategory.CategoryName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.FoodCategory.CategoryName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Unit)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Unit)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Price)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Ingredients)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Ingredients)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.status)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.status)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>

@@ -15,6 +15,11 @@ namespace HotelManagemant.Models
         public string BillNo { get; set; }
         public DateTime CheckOutDate { get; set; }
         public int NoOfDays { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? EditedAt { get; set; }
+        public string EditedBy { get; set; }
+
 
     }
 }

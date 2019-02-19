@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HotelManagemant.Models.DrinkCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<table class="table tab-border" id="datBle">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" />
+<link href="~/Content/DataTables/css/responsive.bootstrap.min.css" />
+<script src="~/Scripts/datatables/jquery.dataTables.min.js" ></script>
+
+<script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+<script>
+
+
+    $(function () {
+        $("#datBle").DataTable(
+            {
+                "aoColumnDefs": [{
+                    "bSortable": false,
+                    "aTargets": [2]
+                }],
+
+            });
+    });
+</script>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>

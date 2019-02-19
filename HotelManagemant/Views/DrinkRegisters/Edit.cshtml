@@ -1,0 +1,106 @@
+﻿@model HotelManagemant.Models.DrinkRegister
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@using (Html.BeginForm("Edit", "DrinkRegisters", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="row">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            <label>Category Name</label>
+            @Html.DropDownList("DrinkCategoryId", null, "select Category", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DrinkCategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity)
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="form-group">
+            <label>Unit Name</label>
+            @Html.EditorFor(model => model.UnitName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UnitName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price)
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description)
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.status)
+            <div class="checkbox checkbox-inline">
+                @Html.EditorFor(model => model.status)
+                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            <label>Image</label>
+            <input type="file" id="FImage" name="FImage" class="form-control" accept=".jpg , .png" />
+            @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            <label>Images</label>
+
+            <input type="file" id="Image" name="Image" class="form-control" multiple />
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Edit" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+</div>
+}
+
+

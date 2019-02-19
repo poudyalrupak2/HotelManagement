@@ -1,0 +1,156 @@
+﻿@model HotelManagemant.ViewModels.productViewModel
+<div class="col-md-8 col-sm-8 col-xs-8">
+    <input type="text" placeholder="Customer Name" id="cname" />
+    <label id="lblTableNo" data-value="@Model.tableNo">Table No:@Model.tableNo</label>
+    <label id="selectedtable" hidden>@Model.tableNo</label>
+    <table class="table table-bordered table-responsive" id="tblProduct" style="width:95%;float:left;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>SubTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.bookingtables.Count == 0)
+            {
+                <tr id="rowMessage">
+                    <td colspan="5">
+                        No Record Found.
+                    </td>
+                </tr>
+            }
+            @if (Model.bookingtables.Count > 0)
+            {
+                foreach (var item in Model.bookingtables)
+                {
+                    <tr>
+                        <td data-type="@item.Type" data-itemId="@item.ItemId" data-id="@item.Id">@item.Itemname</td>
+                        <td id="txtQty">
+                            @item.Quantity
+                        </td>
+                        <td id="txtRate">@item.Price</td>
+                        <td id="txtSubTotal">
+                            @item.SubTotal
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    <br />
+   <label>Discount:  </label> <input type="number" name="discount" placeholder="Discount" id="txtDiscount" step="0.01" value="0"/>
+    <label>Vat</label><span>&nbsp;</span>  <input type="checkbox" id="chkVat" name="vat" /> <span>&nbsp; </span><input type="text" id="txtTotal" placeholder="Total" name="Total" />
+
+    <div>
+        <center><input type="submit" class="btn btn-primary" id="btnSubmit" style="text-align:center" value="Submit"> </center>
+
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        calculateTotal();
+
+    })
+    $("#txtDiscount").keyup(function () {
+        var discount = $(this).val();
+        if (parseFloat(discount) > 0) {
+            calculateTotal();
+        }
+    })
+
+    $('#chkVat').change(function () {
+        if ($(this).is(":checked")) {
+            var returnVal = confirm("Do you want to apply VAT?");
+            $(this).attr("checked", returnVal);
+            calculateTotal();
+        }
+        else {
+            calculateTotal();
+
+
+        }
+
+    })
+    
+    function calculateTotal() {
+        var discount = $("#txtDiscount").val();
+        if ($('#chkVat:checkbox:checked').length > 0) {
+            vat = 13;
+        }
+        else {
+            vat = 0;
+        }
+        var $rows = $("table#tblProduct tbody").find("tr");
+        var total = 0;
+        if (isNaN(discount)) {
+            discount = 0;
+        }
+        //if ($('#chkVat:checkbox:checked').length > 0) {
+        //    vat = 13;
+        //}
+        $rows.each(function () {
+            //  alert($(this).find("td#txtSubTotal").html());
+            total = parseFloat(total + parseFloat($(this).find("td#txtSubTotal").html()));// * $(this).find("td#txtRate").text));
+        })
+
+        if (parseFloat(discount) > 0) {
+            discountAmount = parseFloat(total * parseFloat(discount) / 100);
+        }
+        if (parseFloat(vat) > 0) {
+            vatAmount = parseFloat(total * parseFloat(vat) / 100);
+        }
+
+        $("#txtTotal").val(total + vat - discount);
+    }
+    //if ($('#chkVat:checkbox:checked').length > 0) {
+    //    vat = 13;
+    //}
+    //else {
+    //    vat = 0;
+    //}
+    $("#btnSubmit").click(function () {
+        
+                var BillingItem = new Array();
+                var BillingInfo = new Array();
+
+                var labelTable = $("label#lblTableNo").attr("data-value");           
+                $("#tblProduct TBODY TR").each(function () {
+                    var row = $(this);
+                    var customer = {};
+                    customer.ItemId = row.find("TD").eq(0).attr("data-itemId");
+                    customer.ItemType = row.find("TD").eq(0).attr("data-type");
+                    customer.Quantity = row.find("TD").eq(1).html();
+                    BillingItem.push(customer);
+                });
+                var customer = {};
+                customer.Name = $("#cname").val();
+                customer.TableNo = labelTable;
+                customer.Discount = $("#txtDiscount").val();
+                customer.Vat = vat;
+                customer.total = $("txtTotal").val();
+                BillingInfo.push(customer);
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: "/products/createbill",
+                    data: "{'BillingItem':" + JSON.stringify(BillingItem) + ",'BillingInfo':" + JSON.stringify(BillingInfo)+"}" ,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        if (r == "success") {
+                            window.location.href = '@Url.Action("PrintBill", "Products")/'+labelTable;
+                        }
+                    }
+                   
+                });
+            
+        });
+
+        
+
+</script>

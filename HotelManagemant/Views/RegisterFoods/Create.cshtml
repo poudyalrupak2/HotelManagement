@@ -1,0 +1,108 @@
+﻿@model HotelManagemant.Models.RegisterFood
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "RegisterFoods", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="row">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+
+            <label>Category Name</label>
+            @Html.DropDownList("FoodCategoryId", null, "select Category", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FoodCategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.Quantity)
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.Unit)
+            @Html.DropDownList("Unit", new List<SelectListItem> { new SelectListItem { Text = "---Select Unit--", Value = "" }, new SelectListItem { Text = "Meter", Value = "L" }, new SelectListItem { Text = "Liter", Value = "M" }, new SelectListItem { Text = "KiloGram", Value = "Kg" } }, new { @class = "form-control", id = "ddlCustomerType" })
+            @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price)
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ingredients)
+            @Html.EditorFor(model => model.Ingredients, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ingredients, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="col-md-3">
+
+            @Html.LabelFor(model => model.status)
+            <div class="checkbox checkbox-inline">
+                @Html.EditorFor(model => model.status)
+                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Image</label>
+            <input type="file" id="FImage" name="FImage" class="form-control" accept=".jpg , .png" />
+            @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Images</label>
+
+            <input type="file" id="Image" Name="Image" class="form-control" multiple />
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+</div>
+}

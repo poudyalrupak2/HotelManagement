@@ -28,7 +28,11 @@ namespace HotelManagemant.Models
             this.Facilities = new HashSet<Facilities>();
             this.Bookings = new HashSet<Booking>();
         }
-       
+        public DateTime? CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? EditedAt { get; set; }
+        public string EditedBy { get; set; }
+
 
     }
 

@@ -1,0 +1,85 @@
+﻿@model HotelManagemant.ViewModels.ResBillViewModel
+
+@{
+    ViewBag.Title = "PrintBill";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>PrintBill</h2>
+<div id="ExpReport">
+    <label>Table No:</label>
+    @Model.TableNo
+    <label>Name:</label>
+    @Model.customerName
+
+    <table class="table table-bordered" style="width:25%;">
+        <tr>
+            <th>Item Name</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Sub Total</th>
+        </tr>
+
+        @foreach (var item in Model.foodItems)
+        {
+            <tr>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    @item.qty
+                </td>
+                <td>
+                    @item.rate
+                </td>
+                <td>
+                    @(item.rate * item.qty)
+                </td>
+            </tr>
+        }
+        <tr>
+
+            <td colspan="4" style="text-align:right;">
+                <label>Discout(%):</label>@Model.discount<br />
+                @if (Model.vatAmount > 0)
+                {
+                    <label>Vat:</label>@Model.vatAmount<br />
+                }
+                <label>Grand Total:</label>@Model.grandTotal
+            </td>
+        </tr>
+    </table>
+    </div>
+    <button class="btn btn-primary" id="btnPrint">Print</button>
+
+    @section Scripts{
+        <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnPrint").click(function (e) {
+            PrintElem("ExpReport");
+        });
+    });
+
+    function PrintElem(elem) {
+
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            var printContents = document.getElementById('ExpReport').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents + "<footer><div class='footer-copyright text-center py-3' >© 2018 Copyright:Debugsoft.com</div ></footer >";
+
+            window.print();
+            document.body.innerHTML = originalContents;
+            document.title = "Print page title";
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
+
+    }
+
+        </script>
+    }
+
+</div>

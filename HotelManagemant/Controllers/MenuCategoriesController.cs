@@ -8,11 +8,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HotelManagemant.Data;
+using HotelManagemant.Filters;
 using HotelManagemant.Models;
 
 namespace HotelManagemant.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [SessionCheck]
+
 
     public class MenuCategoriesController : Controller
     {

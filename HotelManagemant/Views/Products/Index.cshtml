@@ -1,0 +1,473 @@
+﻿@model HotelManagemant.ViewModels.productViewModel
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        padding-bottom: 5px;
+        margin-top: 10px;
+     }
+    div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" id="myInput" class="form-control" placeholder="Search products..." name="search">
+                    <div class="input-group-btn">
+                        <button id="mySubmit" style="max-height:34px;" class="btn btn-default" type="submit" disabled><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+
+                @foreach (var item in Model.RegisterFood)
+                {
+                    if (item.Quantity > 0)
+                    {
+
+                    <div class="col-md-6 text-center">
+                        <div class="card">
+                            <div class="card-img-wrapper">
+                                <a target="_blank" href="@item.ImageName">
+                                    <img class="card-img-top" src="@item.ImageName" width="50" height="50">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center mb-1">@item.Name</h5>
+                                <p class="card-text text-muted">@item.Ingredients</p>
+                                <a id="btnAdd" data-type="Food" data-total="@item.Quantity" data-id="@item.Id" href="#" class="btn btn-primary">Add To cart</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    }
+                }
+                @foreach (var item in Model.DrinkRegister)
+                {
+                    if (item.Quantity > 0)
+                    {
+                    <div class="col-md-6 text-center">
+                        <div class="card">
+                            <div class="card-img-wrapper">
+                                <img class="card-img-top" src="@item.ImageName" width="50" height="50">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center mb-1">@item.Name</h5>
+                                <p class="card-text text-muted">@item.Description</p>
+                                <a id="btnAdd" data-type="Drink" data-total="@item.Quantity" data-id="@item.Id" href="#" class="btn btn-primary">Add To cart</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    }
+                }
+
+
+
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <label id="lblTableNo">Table No:@Model.tableNo</label>
+            <label id="selectedtable" hidden>@Model.tableNo</label>
+            <table class="table table-bordered table-responsive" id="tblProduct" style="width:95%;float:left;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>SubTotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.bookingtables.Count == 0)
+                    {
+                        <tr id="rowMessage">
+                            <td colspan="5">
+                                No Record Found.
+                            </td>
+                        </tr>
+                    }
+                    @if(Model.bookingtables.Count>0)
+                    {
+                        foreach (var item in Model.bookingtables)
+                        {
+                           
+                           <tr>
+                                <td data-type="@item.Type" data-itemId="@item.ItemId" data-id="@item.Id">@item.Itemname</td>
+                                <td >
+                                    <i id="btnMinusQty" class="fa fa-x next fa-minus-circle text-danger"></i><br/>
+                                    <input style="width:30px;" step="1" min="1" type="text" autocomplete="off" id="txtQty" value="@item.Quantity" /><br />
+                                    <i id="btnAddQty" class="fa fa-x  fa-plus-circle text-success"></i>
+                                </td>
+                                <td id="tdRate"><input style="width:60px;" id="txtRate" value="@item.Price" readonly /></td>
+                                <td><input style="width:60px;" type="number" step="0.01" id="txtTotal" value="@item.SubTotal" readonly /></td>
+                                <td><i id="btnRemove" class="fa fa-x fa-minus-circle text-danger"></i></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            @if (Model.tableNo==0 )
+            {
+            <div id="tablesAvailable">
+                <h3>Select Table</h3>
+                <div style="border:1px solid black;border-radius:10px;padding:3px;">
+                    @foreach (var item in Model.tableRegister)
+                    {
+                        if (item.Status == "Available")
+                        {
+                            <a id="tblBtn" status="@item.TableNo" data-id="@item.Id" href="#" class="btn btn-default">@item.TableNo</a>
+                        }
+
+                    }
+                </div>
+            </div>
+
+
+
+            <div id="tablesBooking">
+                <h3>Booked Table</h3>
+                <div style="border:1px solid black;border-radius:10px;padding:3px;">
+                    @foreach (var item in Model.tableRegister)
+                    {
+                        if (item.Status == "Unavailable")
+                        {
+                            <a id="tblBtn" status="@item.TableNo" data-id="@item.Id" href="#" class="btn btn-default">@item.TableNo</a>
+                        }
+
+                    }
+                </div>
+            </div>
+            }
+           
+
+        </div>
+    </div>
+    <center>  <input type="submit" class="btn btn-primary" id="btnSubmit" style="text-align:center" value="Submit" > </center>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+
+        $("#btnSubmit").css("disable", "disable");
+
+        var newno;
+        $("#btnSubmit").click(function () {
+            var Bookingtable = new Array();
+            var labelTable = $("label#lblTableNo").html();
+            newno = labelTable.substring(9);
+           
+                $("#tblProduct TBODY TR").each(function () {
+                    var row = $(this);
+                    var customer = {};
+                    customer.Itemname = row.find("TD").eq(0).html();
+                    customer.Quantity = row.find("TD").eq(1).find("input#txtQty").val();
+                    customer.TableNo = newno;
+                    customer.Type = row.find("TD").eq(0).attr("data-type");
+                    customer.ItemId = row.find("TD").eq(0).attr("data-itemId");
+                    Bookingtable.push(customer);
+                });
+
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: "/products/CreateBooking",
+                    data: JSON.stringify(Bookingtable),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        if (r == "success") {
+                            
+                            window.location.href ='@Url.Action("ViewBilling", "Products")';
+                        }
+                    }
+                   
+                });
+            
+        });
+
+        $("body div#tablesAvailable div a").click(function () {
+
+            var attrClass = $(this).attr("class");
+
+            if (attrClass == "btn btn-primary") {
+                $(this).attr("class", "btn btn-default");
+                $("#lblTableNo").html("Table No:");
+            }
+
+            if (attrClass == "btn btn-default") {
+                newno = $(this).html();
+                $("#lblTableNo").html("Table No:" + newno);//replaceWith("<label id='lblTableNo'>Table No:" + newno + "</label>");
+                //$("#lblTableNo").append($(this).html());
+                $(this).attr("class", "btn btn-primary");
+            }
+
+
+        })
+
+
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".row div div.card").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#mySubmit").on("click", function () {
+            var value = $("body #myInput").val().toLowerCase();
+            $(".row div div.card").filter(function () {
+                $(this).toggle($(this).val().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        //Add Items to the cart
+        $("body #btnAdd").click(function (e) {
+
+            var idval = $(this).attr("data-id");
+            var typeItem = $(this).attr("data-type");
+           
+
+            if ($(this).attr('class') == "btn btn-danger") {
+                alert("Items already added");
+                e.preventDefault();
+            }
+            else {
+                if (CheckAdded(idval,typeItem)) {
+                    alert("Items Already Added.");
+                    e.preventDefault();
+                }
+                else {
+                    var $table = $("#tblProduct");
+                    var $trMessage = $("table#tblProduct > tbody > tr#rowMessage");
+                    var $trGrandTotal = $("table#tblProduct > tbody > tr#grandTotal");
+
+                    $trMessage.remove();
+                    $trGrandTotal.remove();
+
+
+                    var valueVal = $(this).attr("data-type");
+                    $.get("/products/getproductbyid", { id: idval, value: valueVal }) //"'id':'" + (idval) + "','value':'" + jsonparse(valueVal) + "'" })
+                        .success(function (data) {
+                            var my_obj = data;
+
+                            var $tbody = $("table#tblProduct > tbody");
+                            var $trRow = "<tr>\
+                                        <td data-itemId='"+ idval + "' data-type='" + valueVal + "'  data-id='" + data.Id + "'>" + data.Name + "</td ><td  >\
+                                           <span><i id='btnMinusQty' class='fa fa-x next fa-minus-circle text-danger'></i></span></br>\
+                                            <input style='width:30px;' step='1' min='1' type='text' autocomplete='off' id='txtQty' value='1' /></br>\
+                                            <i id='btnAddQty' class='fa fa-x  fa-plus-circle text-success'></i> </td>\
+                                            <td id='tdRate'><input style='width:60px;'  id='txtRate' value='"+ data.Price + "' readonly /></td>\
+                                         <td ><input  style='width:60px;' type='decimal' id='txtTotal' value='"+ data.Price + "' readonly /></td>\
+                                            <td><i id='btnRemove' class='fa fa-x fa-minus-circle text-danger'></i></td> \
+                                            </tr >";
+                            $tbody.append($trRow);
+
+                            
+
+                            $(this).attr('class', 'btn btn-danger');
+                        }, "json")
+
+
+                    $(this).attr('class', 'btn btn-danger');
+                }
+            }
+        })
+
+
+      
+
+        $('body').on('click', '#btnRemove', function () {
+
+            var $tr = $(this).parent().parent();
+            var id = $tr.find("td:first").attr("data-id");
+
+            var $btnAdd = $(("a#btnAdd[data-id='" + id + "']")).attr("class", "btn btn-primary");
+
+            $tr.remove();
+            var $trGrandTotal = $("table#tblProduct > tbody > tr#grandTotal");
+            $trGrandTotal.remove();
+
+            if ($("table#tblProduct tbody tr").length == 0) {
+                $("table#tblProduct tbody").append(" <tr id='rowMessage' ><td colspan='5'>No Items Found.</td></tr>")
+            }
+        })
+
+        $('body').on('click', '#btnMinusQty', function() {
+            var $tr = $(this).parent().parent();
+            var $td = $(this).parent();
+            var $inputRate = $tr.find("td input#txtRate");
+            var $inputTotal = $tr.find("td input#txtTotal");
+            var $input = $tr.find("input#txtQty");
+            var value = parseInt($input.val());
+            if (parseInt(value) > 1) {
+                $input.val(parseInt(value - 1));    
+                $inputTotal.val(parseFloat(parseInt(value - 1) * $inputRate.val()));
+            }
+
+        })
+        $('body').on('click', '#btnAddQty', function (e) {
+            var $tr = $(this).parent().parent();
+            var $td = $(this).parent();
+            var type = $tr.find("td:first").attr("data-type");
+            var $input = $tr.find("input#txtQty");
+            var id = $tr.find("td:first").attr("data-itemId");
+            var totaldataQty = $("body a#btnAdd[data-id='" + id + "'][data-type='" + type + "']").attr("data-total");
+
+    
+            if (parseInt(totaldataQty) < (parseInt($input.val()) + 1)) {
+                alert("Qty Exceeds Total Available Qty.");
+                e.preventDefault();
+            }
+            else {
+                var $inputRate = $tr.find("td input#txtRate");
+                var $inputTotal = $tr.find("td input#txtTotal");
+                var value = parseInt($input.val());
+                if (parseInt(value) >= 1) {
+                    $input.val(parseInt(value + 1));
+                    $inputTotal.val(parseFloat(parseInt(value + 1) * $inputRate.val()).toFixed(2));
+                }
+                var $trGrandTotal = $("table#tblProduct > tbody > tr#grandTotal");
+                $trGrandTotal.remove();
+            }
+
+        })
+
+
+        function CheckAdded(id1,type)
+        {
+        var result = false;
+        var $table = $("#tblProduct");
+        var $tr = $table.find("tbody tr");
+        $tr.each(function () {
+            var $td = $(this).find("td:first");
+            var id2 = $td.attr("data-itemId");
+            var type2 = $td.attr("data-type");
+            if (id2 == id1 && type == type2) {
+                result=  true;
+                return false;
+            }
+        })
+        return result;
+
+        }
+
+
+        //Calculate Grand Total
+        function calculateGrandTotal() {
+            var $rows = $("table#tblProduct tbody").find("tr").not("tr#grandTotal");
+            var total = 0;
+            var discount = $("table#tblProduct tbody").find("tr#grandTotal td input#txtDis").val();
+            var vat = $("table#tblProduct tbody").find("tr#grandTotal td input#txtVat").val();
+
+            $rows.each(function () {
+                total = parseFloat(total + parseFloat($(this).find("td input#txtQty").val() * $(this).find("td input#txtRate").val()));
+            })
+
+            if (parseFloat(discount) > 0) {
+                total = parseFloat(total - (total * parseFloat(discount) / 100));
+            }
+            if (parseFloat(vat) > 0) {
+                total = parseFloat(total + (total * parseFloat(vat) / 100));
+            }
+
+
+            return total;
+
+        }
+
+
+        $('body').on('keyup', 'table#tblProduct tr td input#txtQty', function (e) {
+            var val = $(this).val();
+            if (parseInt(val) > 0 && val != null) {
+                var $tr = $(this).parent().parent();
+                var id = $tr.find("td:first").attr("data-itemId");
+                var type = $tr.find("td:first").attr("data-type");
+                var totalQty = $("body a#btnAdd[data-id='" + id + "'][data-type='" + type + "']").attr("data-total");
+                if (parseInt(totalQty) < parseInt(val)) {
+                    alert("Qty Exceeds total avilable Qty.");
+                    $(this).val(1);
+                    e.preventDefault();
+                }
+            }
+            else if (parseInt(val) <= 0) {
+                alert("Qty must be greater than 0.");
+                $(this).val(1);
+                e.preventDefault();
+            }
+        })
+
+        $('body').on('keyup', 'table#tblProduct tr#grandTotal td input#txtDis', function () {
+            if ($(this).val() == null) {
+                $(this).val(0);
+                e.preventDefault();
+            }
+            else {
+                calculateGrandTotal();
+            }
+        })
+
+        $('body').on('keyup', 'table#tblProduct tr#grandTotal td input#txtVat', function () {
+            if ($(this).val() == null) {
+                $(this).val(0);
+                e.preventDefault();
+            }
+            else {
+                calculateGrandTotal();
+            }
+        })
+
+    })
+
+</script>
+

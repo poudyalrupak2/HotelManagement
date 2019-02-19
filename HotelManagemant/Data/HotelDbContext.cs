@@ -26,6 +26,14 @@ namespace HotelManagemant.Data
         public DbSet<Room> rooms { get; set; }
         public DbSet<Facilities> facilities { get; set; }
         public DbSet<Billing> billing{ get; set; }
+        public DbSet<RegisterFood> RegisterFoods { get; set; }
+        public DbSet<FoodCategory> foodCategories { get; set; }
+        public DbSet<DrinkRegister> drinkRegisters { get; set; }
+        public DbSet<DrinkCategory> drinkCategories { get; set; }
+        public DbSet<TableRegister> tableRegisters { get; set; }
+        public DbSet<Bookingtable> Bookingtables { get; set; }
+        public DbSet<BillingInfo> BillingInfos { get; set; }
+        public DbSet<BillingItem> billingItems { get; set; }
     }
 
 }

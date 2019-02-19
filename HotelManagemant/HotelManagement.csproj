@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -60,6 +63,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -159,154 +165,81 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DrinkCategoriesController.cs" />
+    <Compile Include="Controllers\DrinkRegistersController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
+    <Compile Include="Controllers\FoodCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\MenuCategoriesController.cs" />
     <Compile Include="Controllers\MenuContinentsController.cs" />
     <Compile Include="Controllers\MenuRegistrationsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\RegisterFoodsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\TableRegistersController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Data\HotelDbContext.cs" />
     <Compile Include="Filter\SessionCheck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811201000309_init.cs" />
-    <Compile Include="Migrations\201811201000309_init.Designer.cs">
-      <DependentUpon>201811201000309_init.cs</DependentUpon>
+    <Compile Include="Migrations\201902140645495_init.cs" />
+    <Compile Include="Migrations\201902140645495_init.Designer.cs">
+      <DependentUpon>201902140645495_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811201020247_init1.cs" />
-    <Compile Include="Migrations\201811201020247_init1.Designer.cs">
-      <DependentUpon>201811201020247_init1.cs</DependentUpon>
+    <Compile Include="Migrations\201902140726211_unit-removed.cs" />
+    <Compile Include="Migrations\201902140726211_unit-removed.Designer.cs">
+      <DependentUpon>201902140726211_unit-removed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811201046091_ini.cs" />
-    <Compile Include="Migrations\201811201046091_ini.Designer.cs">
-      <DependentUpon>201811201046091_ini.cs</DependentUpon>
+    <Compile Include="Migrations\201902150909438_taxremoved.cs" />
+    <Compile Include="Migrations\201902150909438_taxremoved.Designer.cs">
+      <DependentUpon>201902150909438_taxremoved.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811210114468_init2.cs" />
-    <Compile Include="Migrations\201811210114468_init2.Designer.cs">
-      <DependentUpon>201811210114468_init2.cs</DependentUpon>
+    <Compile Include="Migrations\201902151605490_food-type-added.cs" />
+    <Compile Include="Migrations\201902151605490_food-type-added.Designer.cs">
+      <DependentUpon>201902151605490_food-type-added.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811210401519_init3.cs" />
-    <Compile Include="Migrations\201811210401519_init3.Designer.cs">
-      <DependentUpon>201811210401519_init3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811221006446_init4.cs" />
-    <Compile Include="Migrations\201811221006446_init4.Designer.cs">
-      <DependentUpon>201811221006446_init4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811270911446_dataBaseStruChanged.cs" />
-    <Compile Include="Migrations\201811270911446_dataBaseStruChanged.Designer.cs">
-      <DependentUpon>201811270911446_dataBaseStruChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811270916026_BookingNoadded.cs" />
-    <Compile Include="Migrations\201811270916026_BookingNoadded.Designer.cs">
-      <DependentUpon>201811270916026_BookingNoadded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811280843274_bookingNoAsForeignKey.cs" />
-    <Compile Include="Migrations\201811280843274_bookingNoAsForeignKey.Designer.cs">
-      <DependentUpon>201811280843274_bookingNoAsForeignKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811280854018_bookingNoAsForeignKey2.cs" />
-    <Compile Include="Migrations\201811280854018_bookingNoAsForeignKey2.Designer.cs">
-      <DependentUpon>201811280854018_bookingNoAsForeignKey2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811280910592_bookingNoAsForeignKey21.cs" />
-    <Compile Include="Migrations\201811280910592_bookingNoAsForeignKey21.Designer.cs">
-      <DependentUpon>201811280910592_bookingNoAsForeignKey21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811280911550_bookingNoAsForeignKey22.cs" />
-    <Compile Include="Migrations\201811280911550_bookingNoAsForeignKey22.Designer.cs">
-      <DependentUpon>201811280911550_bookingNoAsForeignKey22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811280912181_bookingNoAsForeignKey3.cs" />
-    <Compile Include="Migrations\201811280912181_bookingNoAsForeignKey3.Designer.cs">
-      <DependentUpon>201811280912181_bookingNoAsForeignKey3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811281032030_bookingNoAsForeignKey31.cs" />
-    <Compile Include="Migrations\201811281032030_bookingNoAsForeignKey31.Designer.cs">
-      <DependentUpon>201811281032030_bookingNoAsForeignKey31.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811281035445_bookingNoAsForeignKey32.cs" />
-    <Compile Include="Migrations\201811281035445_bookingNoAsForeignKey32.Designer.cs">
-      <DependentUpon>201811281035445_bookingNoAsForeignKey32.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811281038215_makeCorrection.cs" />
-    <Compile Include="Migrations\201811281038215_makeCorrection.Designer.cs">
-      <DependentUpon>201811281038215_makeCorrection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812050147274_room-booking-many-to-many.cs" />
-    <Compile Include="Migrations\201812050147274_room-booking-many-to-many.Designer.cs">
-      <DependentUpon>201812050147274_room-booking-many-to-many.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812070750253_advance-amount-added.cs" />
-    <Compile Include="Migrations\201812070750253_advance-amount-added.Designer.cs">
-      <DependentUpon>201812070750253_advance-amount-added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812070905002_Booking-costumer-relationship.cs" />
-    <Compile Include="Migrations\201812070905002_Booking-costumer-relationship.Designer.cs">
-      <DependentUpon>201812070905002_Booking-costumer-relationship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812070917257_Booking-costumer-relationship2.cs" />
-    <Compile Include="Migrations\201812070917257_Booking-costumer-relationship2.Designer.cs">
-      <DependentUpon>201812070917257_Booking-costumer-relationship2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812070948495_cus-book-mtmr.cs" />
-    <Compile Include="Migrations\201812070948495_cus-book-mtmr.Designer.cs">
-      <DependentUpon>201812070948495_cus-book-mtmr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812181045498_billing.cs" />
-    <Compile Include="Migrations\201812181045498_billing.Designer.cs">
-      <DependentUpon>201812181045498_billing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812260650476_Login-added.cs" />
-    <Compile Include="Migrations\201812260650476_Login-added.Designer.cs">
-      <DependentUpon>201812260650476_Login-added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812260943514_menuadded.cs" />
-    <Compile Include="Migrations\201812260943514_menuadded.Designer.cs">
-      <DependentUpon>201812260943514_menuadded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812260958070_menuadded1.cs" />
-    <Compile Include="Migrations\201812260958070_menuadded1.Designer.cs">
-      <DependentUpon>201812260958070_menuadded1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261059580_init21.cs" />
-    <Compile Include="Migrations\201812261059580_init21.Designer.cs">
-      <DependentUpon>201812261059580_init21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812270554500_image-updated.cs" />
-    <Compile Include="Migrations\201812270554500_image-updated.Designer.cs">
-      <DependentUpon>201812270554500_image-updated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812270609501_name-managed.cs" />
-    <Compile Include="Migrations\201812270609501_name-managed.Designer.cs">
-      <DependentUpon>201812270609501_name-managed.cs</DependentUpon>
+    <Compile Include="Migrations\201902191037397_init1.cs" />
+    <Compile Include="Migrations\201902191037397_init1.Designer.cs">
+      <DependentUpon>201902191037397_init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Billing.cs" />
+    <Compile Include="Models\BillingInfo.cs" />
+    <Compile Include="Models\BillingItem.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Bookingtable.cs" />
+    <Compile Include="Models\DrinkImage.cs" />
+    <Compile Include="Models\FoodCategory.cs" />
     <Compile Include="Models\customers.cs" />
+    <Compile Include="Models\DrinkCategory.cs" />
+    <Compile Include="Models\DrinkRegister.cs" />
     <Compile Include="Models\Facilities.cs" />
+    <Compile Include="Models\FoodImage.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MenuCategory.cs" />
     <Compile Include="Models\MenuContinent.cs" />
     <Compile Include="Models\MenuRegistration.cs" />
+    <Compile Include="Models\RegisterFood.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomBooking.cs" />
+    <Compile Include="Models\TableRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="ViewModels\AddCustomerViewModel.cs" />
     <Compile Include="ViewModels\AddRoomViewModel.cs" />
     <Compile Include="ViewModels\bookedViewModel.cs" />
+    <Compile Include="ViewModels\BookingTableVM.cs" />
     <Compile Include="ViewModels\bookViewModel.cs" />
     <Compile Include="ViewModels\ChangeStatusViewModel.cs" />
     <Compile Include="ViewModels\HotelViewModel.cs" />
     <Compile Include="ViewModels\PasswordConform.cs" />
     <Compile Include="ViewModels\printListViewModel.cs" />
+    <Compile Include="ViewModels\productViewModel.cs" />
+    <Compile Include="ViewModels\ResBillViewModel.cs" />
     <Compile Include="ViewModels\roomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -677,6 +610,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="Scripts\jquery.filedrop.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.nicescroll.js" />
@@ -764,6 +698,35 @@
     <Content Include="Views\MenuRegistrations\Edit.cshtml" />
     <Content Include="Views\MenuRegistrations\Index.cshtml" />
     <Content Include="Views\Account\NewPassword.cshtml" />
+    <Content Include="Views\DrinkCategories\Create.cshtml" />
+    <Content Include="Views\DrinkCategories\Delete.cshtml" />
+    <Content Include="Views\DrinkCategories\Details.cshtml" />
+    <Content Include="Views\DrinkCategories\Edit.cshtml" />
+    <Content Include="Views\DrinkCategories\Index.cshtml" />
+    <Content Include="Views\DrinkRegisters\Create.cshtml" />
+    <Content Include="Views\DrinkRegisters\Delete.cshtml" />
+    <Content Include="Views\DrinkRegisters\Details.cshtml" />
+    <Content Include="Views\DrinkRegisters\Edit.cshtml" />
+    <Content Include="Views\DrinkRegisters\Index.cshtml" />
+    <Content Include="Views\FoodCategories\Create.cshtml" />
+    <Content Include="Views\FoodCategories\Delete.cshtml" />
+    <Content Include="Views\FoodCategories\Details.cshtml" />
+    <Content Include="Views\FoodCategories\Edit.cshtml" />
+    <Content Include="Views\FoodCategories\Index.cshtml" />
+    <Content Include="Views\RegisterFoods\Create.cshtml" />
+    <Content Include="Views\RegisterFoods\Delete.cshtml" />
+    <Content Include="Views\RegisterFoods\Details.cshtml" />
+    <Content Include="Views\RegisterFoods\Edit.cshtml" />
+    <Content Include="Views\RegisterFoods\Index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\TableRegisters\Create.cshtml" />
+    <Content Include="Views\TableRegisters\Delete.cshtml" />
+    <Content Include="Views\TableRegisters\Details.cshtml" />
+    <Content Include="Views\TableRegisters\Edit.cshtml" />
+    <Content Include="Views\TableRegisters\Index.cshtml" />
+    <Content Include="Views\Products\ViewBilling.cshtml" />
+    <Content Include="Views\Products\Bill.cshtml" />
+    <Content Include="Views\Products\PrintBill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -785,96 +748,27 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811201000309_init.resx">
-      <DependentUpon>201811201000309_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811201020247_init1.resx">
-      <DependentUpon>201811201020247_init1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811201046091_ini.resx">
-      <DependentUpon>201811201046091_ini.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811210114468_init2.resx">
-      <DependentUpon>201811210114468_init2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811210401519_init3.resx">
-      <DependentUpon>201811210401519_init3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811221006446_init4.resx">
-      <DependentUpon>201811221006446_init4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811270911446_dataBaseStruChanged.resx">
-      <DependentUpon>201811270911446_dataBaseStruChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811270916026_BookingNoadded.resx">
-      <DependentUpon>201811270916026_BookingNoadded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811280843274_bookingNoAsForeignKey.resx">
-      <DependentUpon>201811280843274_bookingNoAsForeignKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811280854018_bookingNoAsForeignKey2.resx">
-      <DependentUpon>201811280854018_bookingNoAsForeignKey2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811280910592_bookingNoAsForeignKey21.resx">
-      <DependentUpon>201811280910592_bookingNoAsForeignKey21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811280911550_bookingNoAsForeignKey22.resx">
-      <DependentUpon>201811280911550_bookingNoAsForeignKey22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811280912181_bookingNoAsForeignKey3.resx">
-      <DependentUpon>201811280912181_bookingNoAsForeignKey3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811281032030_bookingNoAsForeignKey31.resx">
-      <DependentUpon>201811281032030_bookingNoAsForeignKey31.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811281035445_bookingNoAsForeignKey32.resx">
-      <DependentUpon>201811281035445_bookingNoAsForeignKey32.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811281038215_makeCorrection.resx">
-      <DependentUpon>201811281038215_makeCorrection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812050147274_room-booking-many-to-many.resx">
-      <DependentUpon>201812050147274_room-booking-many-to-many.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812070750253_advance-amount-added.resx">
-      <DependentUpon>201812070750253_advance-amount-added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812070905002_Booking-costumer-relationship.resx">
-      <DependentUpon>201812070905002_Booking-costumer-relationship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812070917257_Booking-costumer-relationship2.resx">
-      <DependentUpon>201812070917257_Booking-costumer-relationship2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812070948495_cus-book-mtmr.resx">
-      <DependentUpon>201812070948495_cus-book-mtmr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812181045498_billing.resx">
-      <DependentUpon>201812181045498_billing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812260650476_Login-added.resx">
-      <DependentUpon>201812260650476_Login-added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812260943514_menuadded.resx">
-      <DependentUpon>201812260943514_menuadded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812260958070_menuadded1.resx">
-      <DependentUpon>201812260958070_menuadded1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261059580_init21.resx">
-      <DependentUpon>201812261059580_init21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812270554500_image-updated.resx">
-      <DependentUpon>201812270554500_image-updated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812270609501_name-managed.resx">
-      <DependentUpon>201812270609501_name-managed.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902140645495_init.resx">
+      <DependentUpon>201902140645495_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902140726211_unit-removed.resx">
+      <DependentUpon>201902140726211_unit-removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902150909438_taxremoved.resx">
+      <DependentUpon>201902150909438_taxremoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902151605490_food-type-added.resx">
+      <DependentUpon>201902151605490_food-type-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191037397_init1.resx">
+      <DependentUpon>201902191037397_init1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

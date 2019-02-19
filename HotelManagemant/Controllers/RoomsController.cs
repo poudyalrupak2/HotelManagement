@@ -15,11 +15,13 @@ using HotelManagemant.Data;
 using HotelManagemant.Models;
 using HotelManagemant.ViewModels;
 using System.Transactions;
-
+using HotelManagemant.Filters;
 
 namespace HotelManagemant.Controllers
 {
-    [Authorize(Roles ="Superadmin")]
+    [SessionCheck]
+
+    [Authorize(Roles ="Admin")]
     public class RoomsController : Controller
     {
         private Context db = new Context();
