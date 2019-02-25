@@ -49,7 +49,7 @@ namespace HotelManagemant.Controllers
 
                 booking.Concat(booking2);
 
-
+                
                 listBooking = booking.Select(m => new BookingTableVM(m.B, m.Price)).ToList();
 
                 model.tableNo = tableNo;
@@ -122,8 +122,11 @@ namespace HotelManagemant.Controllers
                     objTable.Quantity = item.Quantity;
                     objTable.TableNo = item.TableNo;
                     objTable.Type = item.Type;
+                    objTable.CreatedAt = DateTime.Now;
+                    objTable.CreatedBy = Session["userEmail"].ToString();
 
                     db.Bookingtables.Add(objTable);
+
                     db.SaveChanges();
 
                     TableRegister table = db.tableRegisters.Where(m => m.TableNo == item.TableNo).FirstOrDefault();
@@ -243,7 +246,7 @@ namespace HotelManagemant.Controllers
 
         }
 
-        public JsonResult createbill(List<BillingItem> BillingItem, List<BillingInfo> BillingInfo)
+        public  JsonResult createbill(List<BillingItem> BillingItem, List<BillingInfo> BillingInfo)
         {
             BillingItem bil = new BillingItem();
 
@@ -254,6 +257,17 @@ namespace HotelManagemant.Controllers
                 bil.ItemId = BillingItem[i].ItemId;
                 bil.ItemType = BillingItem[i].ItemType;
                 bil.Quantity = BillingItem[i].Quantity;
+                bil.Quantity = BillingItem[i].Quantity;
+                if (bil.ItemType=="Food")
+                {
+                    db.Database.ExecuteSqlCommand("Update RegisterFoods SET Quantity =Quantity-'"+bil.Quantity+ "'  where Id='" + bil.ItemId + "'");
+
+                }
+                else
+                {
+                    db.Database.ExecuteSqlCommand("Update DrinkRegisters SET Quantity =Quantity-'" + bil.Quantity + "'  where Id='" + bil.ItemId + "'");
+
+                }
             }
             Info.BillingItems = BillingItem;
 
@@ -261,6 +275,7 @@ namespace HotelManagemant.Controllers
             Info.Discount = BillingInfo[0].Discount;
             Info.TableNo = BillingInfo[0].TableNo;
             Info.Vat = BillingInfo[0].Vat;
+            Info.Pan = BillingInfo[0].Pan;
             Info.Date = DateTime.Now;
             db.BillingInfos.Add(Info);
 
@@ -268,9 +283,8 @@ namespace HotelManagemant.Controllers
             db.Database.ExecuteSqlCommand("Update TableRegisters SET Status ='Available'  where TableNo='" + Info.TableNo + "'");
 
 
-
-            db.SaveChanges();
-            return Json("success");
+             db.SaveChanges();
+            return  Json("success");
 
 
         }

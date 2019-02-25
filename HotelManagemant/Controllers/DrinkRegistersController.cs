@@ -142,6 +142,9 @@ namespace HotelManagemant.Controllers
                     filename3 = Path.Combine(Server.MapPath("~/images/Drink/"), filename3);
                     FImage.SaveAs(filename3);
                 }
+                drinkRegister.CreatedAt = DateTime.Now;
+                drinkRegister.CreatedBy = Session["userEmail"].ToString();
+
                 db.drinkRegisters.Add(drinkRegister);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -164,6 +167,7 @@ namespace HotelManagemant.Controllers
                 return HttpNotFound();
             }
             ViewBag.DrinkCategoryId = new SelectList(db.drinkCategories, "Id", "Id", drinkRegister.DrinkCategoryId);
+
             return View(drinkRegister);
         }
 
@@ -199,6 +203,8 @@ namespace HotelManagemant.Controllers
                     filename3 = Path.Combine(Server.MapPath("~/images/Drink/"), filename3);
                     FImage.SaveAs(filename3);
                 }
+                drinkRegister.EditedAt = DateTime.Now;
+                drinkRegister.EditedBy = Session["userEmail"].ToString();
 
                 db.Entry(drinkRegister).State = EntityState.Modified;
                 db.SaveChanges();

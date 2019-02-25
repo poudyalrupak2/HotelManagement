@@ -147,8 +147,8 @@ namespace HotelManagemant.Controllers
                     filename3 = Path.Combine(Server.MapPath("~/images/Food/"), filename3);
                     FImage.SaveAs(filename3);
                 }
-
-
+                registerFood.CreatedAt = DateTime.Now;
+                registerFood.CreatedBy = Session["userEmail"].ToString();
                 db.RegisterFoods.Add(registerFood);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -206,6 +206,8 @@ namespace HotelManagemant.Controllers
                     filename3 = Path.Combine(Server.MapPath("~/images/Food/"), filename3);
                     FImage.SaveAs(filename3);
                 }
+                registerFood.EditedAt = DateTime.Now;
+                registerFood.EditedBy = Session["userEmail"].ToString();
 
                 db.Entry(registerFood).State = EntityState.Modified;
                 db.SaveChanges();

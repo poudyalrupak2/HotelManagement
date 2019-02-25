@@ -12,7 +12,7 @@ namespace HotelManagemant.ViewModels
         public int Id { get; set; }
         public string HotelName { get; set; }
         public string Type { get; set; }
-       
+       public string PhoneNo { get; set; }
         public ICollection<int> FacilitiesId { get; set; }
         public string Location { get; set; }
         public string Email { get; set; }

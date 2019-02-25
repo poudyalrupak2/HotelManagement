@@ -93,11 +93,14 @@ namespace HotelManagemant.Controllers
                 }
                 var facilites = room.facilitiesId;
                 ICollection<Facilities> objFacilities = new List<Facilities>();
-                foreach (var item in facilites)
+                if (room.facilitiesId!=null)
                 {
-                    int id = Convert.ToInt32(item);
-                    Facilities objfaci = db.facilities.Find(id);
-                    objFacilities.Add(objfaci);
+                    foreach (var item in facilites)
+                    {
+                        int id = Convert.ToInt32(item);
+                        Facilities objfaci = db.facilities.Find(id);
+                        objFacilities.Add(objfaci);
+                    }
                 }
                 db.rooms.Add(new Room
                 {
@@ -110,8 +113,11 @@ namespace HotelManagemant.Controllers
                     Price = room.Price,
                     RoomNo = room.RoomNo,
                     Roomtype = room.Roomtype,
-                    Status = "Available"
-                });
+                    Status = "Available",
+                   CreatedAt=DateTime.Now,
+                CreatedBy = Session["userEmail"].ToString()
+
+            });
                 // db.rooms.Add(room);
                 db.SaveChanges();
 
@@ -176,6 +182,8 @@ namespace HotelManagemant.Controllers
                     filename1 = Path.Combine(Server.MapPath("~/Images/Rooms/"), filename1);
                     img.Save(filename1);
                 }
+                room.EditedAt = DateTime.Now;
+                room.EditedBy = Session["userEmail"].ToString();
 
                 db.Entry(room).State = EntityState.Modified;
                 db.SaveChanges();

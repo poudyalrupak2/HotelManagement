@@ -1,6 +1,8 @@
 ﻿@model HotelManagemant.ViewModels.productViewModel
-<div class="col-md-8 col-sm-8 col-xs-8">
-    <input type="text" placeholder="Customer Name" id="cname" />
+<div class="col-md-8 col-sm-8 col-xs-8 row">
+    <input type="text" placeholder="Customer Name" id="cname" class="form-group " />
+    <input type="text" placeholder="Pan No" id="pan" class="form-group" />
+
     <label id="lblTableNo" data-value="@Model.tableNo">Table No:@Model.tableNo</label>
     <label id="selectedtable" hidden>@Model.tableNo</label>
     <table class="table table-bordered table-responsive" id="tblProduct" style="width:95%;float:left;">
@@ -41,7 +43,7 @@
         </tbody>
     </table>
     <br />
-   <label>Discount:  </label> <input type="number" name="discount" placeholder="Discount" id="txtDiscount" step="0.01" value="0"/>
+    <label>Discount:  </label> <input type="number" name="discount" placeholder="Discount" id="txtDiscount" step="0.01" value="0" />
     <label>Vat</label><span>&nbsp;</span>  <input type="checkbox" id="chkVat" name="vat" /> <span>&nbsp; </span><input type="text" id="txtTotal" placeholder="Total" name="Total" />
 
     <div>
@@ -128,7 +130,8 @@
                     BillingItem.push(customer);
                 });
                 var customer = {};
-                customer.Name = $("#cname").val();
+        customer.Name = $("#cname").val();
+        customer.Pan = $("#pan").val();
                 customer.TableNo = labelTable;
                 customer.Discount = $("#txtDiscount").val();
                 customer.Vat = vat;
@@ -143,7 +146,7 @@
                     dataType: "json",
                     success: function (r) {
                         if (r == "success") {
-                            window.location.href = '@Url.Action("PrintBill", "Products")/'+labelTable;
+                            window.location.href ='@Url.Action("PrintBill", "Products")/'+labelTable;
                         }
                     }
                    

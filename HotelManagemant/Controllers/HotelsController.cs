@@ -1,4 +1,8 @@
-﻿using System;
+﻿using HotelManagemant.Data;
+using HotelManagemant.Filters;
+using HotelManagemant.Models;
+using HotelManagemant.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,10 +13,6 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using HotelManagemant.Data;
-using HotelManagemant.Filters;
-using HotelManagemant.Models;
-using HotelManagemant.ViewModels;
 
 namespace HotelManagemant.Controllers
 {
@@ -36,8 +36,8 @@ namespace HotelManagemant.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hotel hotel = db.hotels.Find(id);
-            if (hotel == null)
+            Hotel hotel = db.hotels.Include(m => m.Facilities).FirstOrDefault(a => a.Id == id);
+                if (hotel == null)
             {
                 return HttpNotFound();
             }
@@ -103,7 +103,11 @@ namespace HotelManagemant.Controllers
                     ImageName = hotel.ImageName,
                     HotelName = hotel.HotelName,
                     Location = hotel.Location,
-                    Ownername = hotel.Ownername
+                    Ownername = hotel.Ownername,
+                    PhoneNo=hotel.PhoneNo,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = Session["userEmail"].ToString()
+
                 });
 
                 Random generator = new Random();
@@ -168,7 +172,7 @@ namespace HotelManagemant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HotelName,Type,Location,Email,Ownername,Image")] Hotel hotel, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "Id,HotelName,Type,Location,Email,ImageName,Ownername,Image,PhoneNo")] Hotel hotel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -198,7 +202,9 @@ namespace HotelManagemant.Controllers
                     filename1 = Path.Combine(Server.MapPath("/images/Hotel/"), filename1);
                     img.Save(filename1);
                 }
-
+                
+                hotel.EditedAt = DateTime.Now;
+                hotel.EditedBy = Session["userEmail"].ToString();
 
                 db.Entry(hotel).State = EntityState.Modified;
                 db.SaveChanges();

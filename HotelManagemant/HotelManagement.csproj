@@ -204,6 +204,14 @@
     <Compile Include="Migrations\201902191037397_init1.Designer.cs">
       <DependentUpon>201902191037397_init1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902240815000_init2.cs" />
+    <Compile Include="Migrations\201902240815000_init2.Designer.cs">
+      <DependentUpon>201902240815000_init2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241124552_pan-added.cs" />
+    <Compile Include="Migrations\201902241124552_pan-added.Designer.cs">
+      <DependentUpon>201902241124552_pan-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\BillingInfo.cs" />
@@ -768,6 +776,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902191037397_init1.resx">
       <DependentUpon>201902191037397_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240815000_init2.resx">
+      <DependentUpon>201902240815000_init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241124552_pan-added.resx">
+      <DependentUpon>201902241124552_pan-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

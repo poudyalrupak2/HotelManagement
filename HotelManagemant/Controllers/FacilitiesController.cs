@@ -58,6 +58,9 @@ namespace HotelManagemant.Controllers
 
             if (ModelState.IsValid)
             {
+                facilities.CreatedAt = DateTime.Now;
+                facilities.CreatedBy = Session["userEmail"].ToString();
+
                 db.facilities.Add(facilities);
                 db.SaveChanges();
 
@@ -101,6 +104,9 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                facilities.EditedAt = DateTime.Now;
+                facilities.EditedBy = Session["userEmail"].ToString();
+
                 db.Entry(facilities).State = EntityState.Modified;
                 db.SaveChanges();
 

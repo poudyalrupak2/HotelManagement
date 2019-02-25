@@ -7,49 +7,59 @@
 
 <h2>PrintBill</h2>
 <div id="ExpReport">
-    <label>Table No:</label>
-    @Model.TableNo
-    <label>Name:</label>
-    @Model.customerName
+    <center>
+        <h2>
+            @Session["Username"].ToString() @Session["Location"].ToString()
 
-    <table class="table table-bordered" style="width:25%;">
-        <tr>
-            <th>Item Name</th>
-            <th>Qty</th>
-            <th>Rate</th>
-            <th>Sub Total</th>
-        </tr>
+        </h2>
+        <h5 style="float:right;">Date:@DateTime.Now.ToShortDateString()</h5>
+        <br />
+        <label>Phone No:@Session["PhoneNo"].ToString()</label></br>
 
-        @foreach (var item in Model.foodItems)
-        {
+        <label>Name:</label>
+        @Model.customerName
+        <label>Table No:</label>
+        @Model.TableNo
+        <table class="table table-bordered" style="width:25%;">
             <tr>
-                <td>
-                    @item.name
-                </td>
-                <td>
-                    @item.qty
-                </td>
-                <td>
-                    @item.rate
-                </td>
-                <td>
-                    @(item.rate * item.qty)
+                <th>Item Name</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Sub Total</th>
+            </tr>
+
+            @foreach (var item in Model.foodItems)
+            {
+                <tr>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        @item.qty
+                    </td>
+                    <td>
+                        @item.rate
+                    </td>
+                    <td>
+                        @(item.rate * item.qty)
+                    </td>
+                </tr>
+            }
+            <tr>
+
+                <td colspan="4" style="text-align:right;">
+                    <label>Discout(%):</label>@Model.discount<br />
+                    @if (Model.vatAmount > 0)
+                    {
+                        <label>Vat:</label>@Model.vatAmount<br />
+                    }
+                    <label>Grand Total:</label>@Model.grandTotal
                 </td>
             </tr>
-        }
-        <tr>
+        </table>
+    </center>
 
-            <td colspan="4" style="text-align:right;">
-                <label>Discout(%):</label>@Model.discount<br />
-                @if (Model.vatAmount > 0)
-                {
-                    <label>Vat:</label>@Model.vatAmount<br />
-                }
-                <label>Grand Total:</label>@Model.grandTotal
-            </td>
-        </tr>
-    </table>
-    </div>
+</div>
     <button class="btn btn-primary" id="btnPrint">Print</button>
 
     @section Scripts{

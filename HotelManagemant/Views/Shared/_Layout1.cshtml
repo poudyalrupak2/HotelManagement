@@ -126,11 +126,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li class="dropdown profile_details_drop">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <div class="profile_img">
-                                            <span class="prfil-img"><img src="" alt=""> </span>
-                                            <div class="user-name">
-                                                <p>Malorum</p>
-                                                <span>Administrator</span>
-                                            </div>
+                                            @if (Session["category"].ToString() == "Admin")
+                                            {
+                                                <span class="prfil-img"><img src="@Session["Image"]" alt="" height="50" width="50"> </span>
+                                                <div class="user-name">
+                                                    <span>Administrator</span>
+                                                </div>
+
+                                            }
+                                            else
+                                            {
+                                                <span class="prfil-img"><img src="" alt=""> </span>
+                                                <div class="user-name">
+                                                    <span>Super Admin</span>
+                                                </div>
+
+                                            }
+
+
                                             <i class="fa fa-angle-down lnr"></i>
                                             <i class="fa fa-angle-up lnr"></i>
                                             <div class="clearfix"></div>
@@ -192,57 +205,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="menu">
                 <ul id="menu">
-                    <li id="menu-home"><a href="@Url.Action("Index","Home")"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-                    <li>
-                        <a href="#"><i class="fa fa-cogs"></i><span>Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul>
-                            <li><a href="@Url.Action("Create","Rooms")">Create</a></li>
-                            <li><a href="@Url.Action("Index","Rooms")">Index</a></li>
-                        </ul>
-                    </li>
 
-                    <li id="menu-comunicacao">
-                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Booked Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul id="menu-comunicacao-sub">
-                            <li id="menu-mensagens" style="width: 120px">
-                                <a href="@Url.Action("Book","Rooms")">Create</a>
-                            </li>
-                            <li id="menu-arquivos"><a href="@Url.Action("BookedRoom","Rooms")">Booked Rooms</a></li>
+                    @if (Session["category"].ToString() == "Admin")
+                    {
 
-                        </ul>
-                    </li>
-                    <li><a href="@Url.Action("BillIndex","Rooms")"><i class="fa fa-file-text-o"></i><span>Hotels Payment</span></a></li>
-                    <li id="menu-academico">
-                        <a href="#"><i class="fa fa-file-text"></i><span>Facilities</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul id="menu-academico-sub">
-                            <li id="menu-academico-boletim"><a href="@Url.Action("create","facilities")">Create</a></li>
-                            <li id="menu-academico-avaliacoes"><a href="@Url.Action("Index", "facilities")">Index</a></li>
-                        </ul>
-                    </li>
+                        <li id="menu-home"><a href="@Url.Action("Index","Home")"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i><span>Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul>
+                                <li><a href="@Url.Action("Create","Rooms")">Create</a></li>
+                                <li><a href="@Url.Action("Index","Rooms")">Index</a></li>
+                            </ul>
+                        </li>
 
-                    <li id="menu-home"><a href="@Url.Action("Index","Products")"><i class="fa fa-tachometer"></i><span>Products</span></a></li>
-                    <li id="menu-comunicacao">
-                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Register Foods</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul id="menu-comunicacao-sub">
-                            <li id="menu-mensagens" style="width: 120px">
-                                <a href="@Url.Action("Index","RegisterFoods")">food</a>
-                            </li>
-                            <li id="menu-arquivos"><a href="@Url.Action("Index","FoodCategories")"> Food Category</a></li>
+                        <li id="menu-comunicacao">
+                            <a href="#"><i class="fa fa-book nav_icon"></i><span>Booked Rooms</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul id="menu-comunicacao-sub">
+                                <li id="menu-mensagens" style="width: 120px">
+                                    <a href="@Url.Action("Book","Rooms")">Create</a>
+                                </li>
+                                <li id="menu-arquivos"><a href="@Url.Action("BookedRoom","Rooms")">Booked Rooms</a></li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("BillIndex","Rooms")"><i class="fa fa-file-text-o"></i><span>Hotels Payment</span></a></li>
+                        <li id="menu-academico">
+                            <a href="#"><i class="fa fa-file-text"></i><span>Facilities</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul id="menu-academico-sub">
+                                <li id="menu-academico-boletim"><a href="@Url.Action("create","facilities")">Create</a></li>
+                                <li id="menu-academico-avaliacoes"><a href="@Url.Action("Index", "facilities")">Index</a></li>
+                            </ul>
+                        </li>
 
-                    <li id="menu-comunicacao">
-                        <a href="#"><i class="fa fa-book nav_icon"></i><span>Register Drinks</span><span class="fa fa-angle-right" style="float: right"></span></a>
-                        <ul id="menu-comunicacao-sub">
-                            <li id="menu-mensagens" style="width: 120px">
-                                <a href="@Url.Action("Index","DrinkRegisters")">Drinks</a>
-                            </li>
-                            <li id="menu-arquivos"><a href="@Url.Action("Index","DrinkCategories")"> Drink Category</a></li>
+                        <li id="menu-home"><a href="@Url.Action("Index","Products")"><i class="fa fa-tachometer"></i><span>Products</span></a></li>
+                        <li id="menu-comunicacao">
+                            <a href="#"><i class="fa fa-book nav_icon"></i><span>Register Foods</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul id="menu-comunicacao-sub">
+                                <li id="menu-mensagens" style="width: 120px">
+                                    <a href="@Url.Action("Index","RegisterFoods")">food</a>
+                                </li>
+                                <li id="menu-arquivos"><a href="@Url.Action("Index","FoodCategories")"> Food Category</a></li>
 
-                        </ul>
-                    </li>
-                    <li id="menu-home"><a href="@Url.Action("Index","TableRegisters")"><i class="fa fa-tachometer"></i><span>Tables</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li id="menu-comunicacao">
+                            <a href="#"><i class="fa fa-book nav_icon"></i><span>Register Drinks</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                            <ul id="menu-comunicacao-sub">
+                                <li id="menu-mensagens" style="width: 120px">
+                                    <a href="@Url.Action("Index","DrinkRegisters")">Drinks</a>
+                                </li>
+                                <li id="menu-arquivos"><a href="@Url.Action("Index","DrinkCategories")"> Drink Category</a></li>
+
+                            </ul>
+                        </li>
+                        <li id="menu-home"><a href="@Url.Action("Index","TableRegisters")"><i class="fa fa-tachometer"></i><span>Tables</span></a></li>
+                    }
+                    else
+                    {
+                        <li id="menu-home"><a href="@Url.Action("Index","Hotels")"><i class="fa fa-tachometer"></i><span>Create Hotel</span></a></li>
+                        <li id="menu-home"><a href="@Url.Action("Index","Facilities")"><i class="fa fa-tachometer"></i><span> Facilities</span></a></li>
+
+                    }
+
                     <li>
                         <a href="@Url.Action("Logout","Account")"><i class="fa fa-envelope"></i><span>Logout</span><span class="fa fa-angle-right" style="float: right"></span></a>
 

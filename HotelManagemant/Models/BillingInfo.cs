@@ -13,6 +13,7 @@ namespace HotelManagemant.Models
         public decimal Discount { get; set; }
         public decimal Vat { get; set; }
         public DateTime Date { get; set; }
+        public string Pan { get; set; }
         public ICollection<BillingItem> BillingItems { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string CreatedBy { get; set; }

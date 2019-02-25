@@ -15,7 +15,15 @@
 
                 <div class="col-md-12">
                     <div id="ExpReport" >
-                        <div  style="text-align:center;"> <label>Hotel Hotel</label></div>
+                        <div style="text-align:center;">
+                            <label>
+                                @Session["Username"].ToString()
+                            </label>
+                            <label>
+                                @Session["Location"].ToString()
+                            </label>
+                            Phone No:Phone No:@Session["PhoneNo"].ToString()
+                        </div>
                        
                         <table class="table table-bordered table-responsive">
 

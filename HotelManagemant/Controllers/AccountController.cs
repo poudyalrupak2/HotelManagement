@@ -57,24 +57,31 @@ namespace HotelManagemant.Controllers
                     }
                     else
                     {
+                      
                         Session.Add("id", Admin.Id);
                         Session.Add("userEmail", Admin.Email);
                         Session.Add("category", Admin.Category);
-                        string img = db.hotels.Where(a => a.Email == l.Email).FirstOrDefault().ImageName;
-                        Session.Add("Image", img);
                         var objAdmin = db.Login.FirstOrDefault(a => (a.Email == l.Email && a.Password == pass));
                         
                         FormsAuthentication.SetAuthCookie(l.Email, false);
                         string[] roles = Roles.GetRolesForUser(Admin.Email);
-                        if (roles.Contains("Superadmin"))
+                        if (roles.Contains("SuperAdmin"))
                         {
-                            return RedirectToAction("Index", "Rooms");
+                            return RedirectToAction("Index", "Hotels");
 
                         }
                         if (roles.Contains("Admin"))
                         {
+                            var username = db.hotels.FirstOrDefault(m => m.Email == Admin.Email).HotelName;
+                            var Location = db.hotels.FirstOrDefault(m => m.Email == Admin.Email).Location;
+                            var PhoneNo = db.hotels.FirstOrDefault(m => m.Email == Admin.Email).PhoneNo;
+                            string img = db.hotels.Where(a => a.Email == l.Email).FirstOrDefault().ImageName;
+                            Session.Add("Image", img);
+                            Session.Add("Username", username);
+                            Session.Add("Location", Location);
+                            Session.Add("phoneno", PhoneNo);
 
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Rooms");
                         }
                         }
 
@@ -90,9 +97,12 @@ namespace HotelManagemant.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid User");
+                    ModelState.AddModelError("", "Invalid Password");
                 }
+
             }
+            ModelState.AddModelError("", "Invalid User");
+
             return View();
 
         }

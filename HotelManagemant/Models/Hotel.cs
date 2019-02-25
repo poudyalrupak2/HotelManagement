@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,7 @@ namespace HotelManagemant.Models
         public String Email { get; set; }
         public string Ownername { get; set; }
         public string ImageName { get; set; }
+        public string PhoneNo { get; set; }
         [NotMapped]
         public HttpPostedFileBase Image { get; set; }
         public Hotel()

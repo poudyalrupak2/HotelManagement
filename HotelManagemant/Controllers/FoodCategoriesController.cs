@@ -56,6 +56,9 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                foodCategory.CreatedAt = DateTime.Now;
+                foodCategory.CreatedBy = Session["userEmail"].ToString();
+
                 db.foodCategories.Add(foodCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,6 +91,9 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                foodCategory.EditedAt = DateTime.Now;
+                foodCategory.EditedBy = Session["userEmail"].ToString();
+
                 db.Entry(foodCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

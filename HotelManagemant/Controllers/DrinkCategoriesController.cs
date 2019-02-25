@@ -55,6 +55,8 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                drinkCategory.CreatedAt = DateTime.Now;
+                drinkCategory.CreatedBy = Session["userEmail"].ToString();
                 db.drinkCategories.Add(drinkCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -87,6 +89,9 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                drinkCategory.EditedAt = DateTime.Now;
+                drinkCategory.EditedBy = Session["userEmail"].ToString();
+
                 db.Entry(drinkCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

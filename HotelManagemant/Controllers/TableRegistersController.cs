@@ -56,6 +56,9 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                tableRegister.CreatedAt = DateTime.Now;
+                tableRegister.CreatedBy = Session["userEmail"].ToString();
+
                 db.tableRegisters.Add(tableRegister);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,6 +91,9 @@ namespace HotelManagemant.Controllers
         {
             if (ModelState.IsValid)
             {
+                tableRegister.EditedAt = DateTime.Now;
+                tableRegister.EditedBy = Session["userEmail"].ToString();
+
                 db.Entry(tableRegister).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
